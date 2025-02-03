@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 import Logo from "../../public/coin.png"
 import Image from 'next/image'
+import ChangeTheme from './changeTheme'
 
 
 const Navbar: React.FC = () => {
@@ -13,9 +15,9 @@ const Navbar: React.FC = () => {
                 </div>
 
                 <div className='flex gap-4 items-center'>
-                    <li>Theme</li>
+                    <li><ChangeTheme /></li>
                     <li>Language</li>
-                    <li><button className='bg-blue-600 text-white px-3 py-1 rounded-md'>Log In </button></li>
+                    <li><button className='bg-blue-400 text-white px-3 py-1 rounded-md'>Log In </button></li>
                 </div>
             </ul>
 
