@@ -1,6 +1,12 @@
-export default function Home() {
+import React from "react";
+import Navbar from "./components/navbar";
+
+const Home: React.FC = () => {
   return (
-  <>
-  </>
+    <div>
+      <Navbar />
+    </div>
   );
-}
+};
+
+export default Home;
