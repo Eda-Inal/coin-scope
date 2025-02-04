@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: var(--font-roboto), sans-serif;
+  background-color: #ffffff; 
+  color: #2d3748; 
 }
+html.dark body {
+  background-color: #1a202c; 
+  color: #ffffff; 
+}
+

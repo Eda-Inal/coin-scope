@@ -1,14 +1,11 @@
 'use client'
 import React from 'react'
 import Logo from "../../public/coin.png"
-import type { RootState } from '../store'
 import Image from 'next/image'
 import ChangeTheme from './changeTheme'
-import { useSelector } from 'react-redux'
 
 
 const Navbar: React.FC = () => {
-    const count = useSelector((state: RootState) => state.theme.value)
     return (
         <nav className='py-3 px-8 border-b-2'>
             <ul className='flex justify-between items-center'>
@@ -19,7 +16,7 @@ const Navbar: React.FC = () => {
 
                 <div className='flex gap-4 items-center'>
                     <li><ChangeTheme /></li>
-                    <li>Language {count}</li>
+                    <li>Language</li>
                     <li><button className='bg-blue-400 text-white px-3 py-1 rounded-md'>Log In </button></li>
                 </div>
             </ul>
