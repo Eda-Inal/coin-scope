@@ -1,6 +1,9 @@
+'use client'
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -8,12 +11,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-
-
-export const metadata: Metadata = {
-  title: "Coin Scope",
-  description: "Track and analyze top cryptocurrency trends, market data, and live updates on your favorite coins.",
-};
 
 export default function RootLayout({
   children,
@@ -25,7 +22,9 @@ export default function RootLayout({
       <body
         className={`${roboto.variable}  antialiased`}
       >
-        {children}
+        <Provider store={store}>
+          {children}
+        </Provider>
       </body>
     </html>
   );
