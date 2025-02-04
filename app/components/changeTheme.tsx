@@ -7,7 +7,7 @@ const ChangeTheme: React.FC = () => {
     const mode = useSelector((state: RootState) => state.theme.mode);
 
     const handleThemeChange = () => {
-        dispatch(toggleTheme()); // 
+        dispatch(toggleTheme());
     };
 
     return (
@@ -22,7 +22,7 @@ const ChangeTheme: React.FC = () => {
                 />
                 <label
                     htmlFor="theme-switch"
-                    className="absolute top-0 left-0 w-6 h-6 bg-blue-300 rounded-full border border-gray-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-6 "
+                    className="absolute top-0 left-0 w-6 h-6 bg-blue-500 rounded-full border border-gray-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-6 "
                 ></label>
             </div>
         </div>
