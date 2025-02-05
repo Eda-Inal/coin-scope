@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
                 <div className="hidden sm:flex sm:gap-4 sm:items-center">
                     <li><ChangeTheme /></li>
                     <li><LanguageNavbar /></li>
-                    <li><button className="bg-blue-400 text-white px-4 py-2 rounded-md">Log In </button></li>
+                    <li><button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">Log In </button></li>
                 </div>
 
 
@@ -56,13 +56,13 @@ const Navbar: React.FC = () => {
                     <CloseIcon onClick={handleHamburgerClick} className='cursor-pointer text-blue-500' />
                 </div>
                 <ul className="flex flex-col gap-4 mt-8 items-center">
-                    <li className="flex gap-2">
+                    <li onClick={handleThemeChange} className="flex cursor-pointer gap-2 border px-4 py-2 w-28 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600" >
                         Theme
-                        {mode === "dark" ? <LightIcon onClick={handleThemeChange} className="fill-current cursor-pointer" /> : <DarkIcon onClick={handleThemeChange} className="fill-current cursor-pointer" />}
+                        {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
                     <li>
-                        <button className="bg-blue-400 text-white px-4 py-2 rounded-md">Log In</button>
+                        <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">Log In</button>
                     </li>
                 </ul>
             </div>

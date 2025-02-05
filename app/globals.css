@@ -2,15 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 body {
   font-family: var(--font-roboto), sans-serif;
-  background-color: #ffffff; 
-  color: #2d3748; 
-}
-html.dark body {
-  background-color: #1a202c; 
-  color: #ffffff; 
+  background-color: #f8f8f8;
+  color: #2d3748;
 }
 
+html.dark body {
+  background-color: #262e3f;
+  color: #f8f8f8;
+}
