@@ -3,13 +3,11 @@ import React, { useState } from 'react'
 import Logo from "../../public/coin.png"
 import Image from 'next/image'
 import ChangeTheme from './changeTheme'
-import SettingsIcon from './Icons/hamburgerIcon'
-import CloseIcon from './Icons/closeIcon'
-import DarkIcon from './Icons/darkIcon'
-import LightIcon from './Icons/lightIcon'
+import { HamburgerIcon, CloseIcon, DarkIcon, LightIcon } from './Icons/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { toggleTheme } from '../features/theme'
+import LanguageNavbar from './languageNavbar';
 
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,8 +32,8 @@ const Navbar: React.FC = () => {
 
                 <div className="hidden sm:flex sm:gap-4 sm:items-center">
                     <li><ChangeTheme /></li>
-                    <li>Language</li>
-                    <li><button className="bg-blue-400 text-white px-3 py-1 rounded-md">Log In </button></li>
+                    <li><LanguageNavbar /></li>
+                    <li><button className="bg-blue-400 text-white px-4 py-2 rounded-md">Log In </button></li>
                 </div>
 
 
@@ -43,7 +41,7 @@ const Navbar: React.FC = () => {
                     {isMenuOpen ?
                         <CloseIcon className="text-blue-500 cursor-pointer" onClick={handleHamburgerClick} />
                         :
-                        <SettingsIcon className="text-blue-500 cursor-pointer" onClick={handleHamburgerClick} />
+                        <HamburgerIcon className="text-blue-500 cursor-pointer" onClick={handleHamburgerClick} />
                     }
                 </div>
             </ul>
@@ -62,9 +60,9 @@ const Navbar: React.FC = () => {
                         Theme
                         {mode === "dark" ? <LightIcon onClick={handleThemeChange} className="fill-current cursor-pointer" /> : <DarkIcon onClick={handleThemeChange} className="fill-current cursor-pointer" />}
                     </li>
-                    <li>Language</li>
+                    <li><LanguageNavbar /></li>
                     <li>
-                        <button className="bg-blue-400 text-white px-3 py-1 rounded-md">Log In</button>
+                        <button className="bg-blue-400 text-white px-4 py-2 rounded-md">Log In</button>
                     </li>
                 </ul>
             </div>
