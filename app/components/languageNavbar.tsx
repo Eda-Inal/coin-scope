@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 const LanguageNavbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
-    const locale = useSelector((state: RootState) => state.language.locale);
+    const { locale, language } = useSelector((state: RootState) => state.language);
     const handleLanguageChange = (lang: string) => {
         dispatch(setLanguage(lang));
         setIsOpen(false);
@@ -17,9 +17,12 @@ const LanguageNavbar: React.FC = () => {
         <div className="relative ">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="px-4 py-2 w-28  border rounded-md hover:bg-gray-100 dark:hover:bg-gray-600"
+                className="px-4 py-2 w-28  border rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 text-sm flex items-center justify-between "
             >
-                Language
+                {language === "English" && <EnglishFlag />}
+                {language === "Türkçe" && <TurkishFlag />}
+                {language === "Deutsch" && <GermanyFlag />}
+                {language}
             </button>
             {isOpen && (
                 <ul className="absolute  mt-1 w-28 flex flex-col items-start bg-lightBackground dark:bg-darkBackground  shadow-md rounded-sm left-1/2 transform -translate-x-1/2 text-sm">
