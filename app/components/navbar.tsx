@@ -8,17 +8,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { toggleTheme } from '../features/theme'
 import LanguageNavbar from './languageNavbar';
+import { setIsMenuOpen } from '../features/navbarSlice'
 
 const Navbar: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleHamburgerClick = (): void => {
-        setIsMenuOpen(!isMenuOpen);
-    };
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
+    const isMenuOpen = useSelector((state: RootState) => state.navbar.isMenuOpen);
     const handleThemeChange = () => {
         dispatch(toggleTheme());
+    };
+    const handleHamburgerClick = () => {
+        dispatch(setIsMenuOpen())
     };
 
     return (

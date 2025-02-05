@@ -4,15 +4,18 @@ import { EnglishFlag, TurkishFlag, GermanyFlag } from './Icons/flagsIcon';
 import { setLanguage } from '../features/languageSlice';
 import { RootState } from '../store';
 import { useDispatch, useSelector } from "react-redux";
+import { setIsMenuOpen } from '../features/navbarSlice';
 
 const LanguageNavbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
-    const { locale, language } = useSelector((state: RootState) => state.language);
+    const { language } = useSelector((state: RootState) => state.language);
     const handleLanguageChange = (lang: string) => {
         dispatch(setLanguage(lang));
         setIsOpen(false);
+        dispatch(setIsMenuOpen())
     };
+
     return (
         <div className="relative ">
             <button
