@@ -5,6 +5,7 @@ import { Provider, useSelector } from "react-redux";
 import { store } from "./store";
 import { RootState } from "./store";
 
+
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -30,6 +31,7 @@ export default function RootLayout({
 const ThemeLayout = ({ children }: { children: React.ReactNode }) => {
 
   const mode = useSelector((state: RootState) => state.theme.mode);
+  const locale = useSelector((state: RootState) => state.language.locale);
 
   return (
     <html lang="en" className={mode === "dark" ? "dark" : ""}>
