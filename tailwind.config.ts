@@ -13,6 +13,7 @@ export default {
         lightBackground: "#f8f8f8",
         darkText: "#ffffff",
         lightText: "#2d3748",
+        primary:"#3b82f6"
       },
     },
   },

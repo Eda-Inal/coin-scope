@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from "../../public/coin.png"
 import Image from 'next/image'
 import ChangeTheme from './changeTheme'
@@ -9,6 +9,8 @@ import { RootState } from '../store'
 import { toggleTheme } from '../features/theme'
 import LanguageNavbar from './languageNavbar';
 import { setIsMenuOpen } from '../features/navbarSlice'
+import Link from 'next/link'
+
 
 const Navbar: React.FC = () => {
     const dispatch = useDispatch();
@@ -33,7 +35,13 @@ const Navbar: React.FC = () => {
                 <div className="hidden sm:flex sm:gap-4 sm:items-center">
                     <li><ChangeTheme /></li>
                     <li><LanguageNavbar /></li>
-                    <li><button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">Log In </button></li>
+                    <li>
+                        <Link href="/login">
+                            <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">
+                                Log In
+                            </button>
+                        </Link>
+                    </li>
                 </div>
 
 
@@ -62,7 +70,11 @@ const Navbar: React.FC = () => {
                     </li>
                     <li><LanguageNavbar /></li>
                     <li>
-                        <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">Log In</button>
+                        <Link href="/login">
+                            <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 w-28 rounded-md">
+                                Log In
+                            </button>
+                        </Link>
                     </li>
                 </ul>
             </div>
