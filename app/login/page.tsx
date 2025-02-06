@@ -5,6 +5,7 @@ import EasyLogin from '../components/easylogin';
 import SignUp from '../components/signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthMethod } from '../features/authSlice';
+import Mail from '../components/mail';
 
 const LogIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const LogIn: React.FC = () => {
     dispatch(setAuthMethod('signin'));
   };
 
+
   return (
     <div className='flex h-screen '>
       <div className='w-1/2 border-r h-full py-20'>
@@ -27,18 +29,20 @@ const LogIn: React.FC = () => {
       <div className='w-1/2 py-40 '>
 
         <div className='text-xl mb-8 w-72 mx-auto  '>
-          {method === 'signin' ? 'Sign in to CryptoTrack' : 'Sign up to CryptoTrack'}
+          {method === 'signin' || method === 'email' ? 'Sign in to CryptoTrack' : 'Sign up to CryptoTrack'}
+
         </div>
         <div className='w-72 max-w-md  mx-auto  '>
           {method === 'signin' && <EasyLogin />}
           {method === 'signup' && <SignUp />}
+          {method === 'email' && <Mail />}
         </div>
 
 
 
 
         <div className='absolute top-12 right-8'>
-          {method === 'signin' ? (
+          {method === 'signin' || method === 'email' ? (
             <>
               Don't you have an account?{' '}
               <span
