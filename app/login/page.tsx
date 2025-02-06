@@ -20,21 +20,29 @@ const LogIn: React.FC = () => {
   };
 
   return (
-    <div className='flex h-screen'>
+    <div className='flex h-screen '>
       <div className='w-1/2 border-r h-full py-20'>
         <LoginLeft />
       </div>
-      <div className='w-1/2 py-20'>
-        {method === 'signin' && <EasyLogin />}
-        {method === 'signup' && <SignUp />}
-        
-      
+      <div className='w-1/2 py-40 '>
+
+        <div className='text-xl mb-8 w-72 mx-auto  '>
+          {method === 'signin' ? 'Sign in to CryptoTrack' : 'Sign up to CryptoTrack'}
+        </div>
+        <div className='w-72 max-w-md  mx-auto  '>
+          {method === 'signin' && <EasyLogin />}
+          {method === 'signup' && <SignUp />}
+        </div>
+
+
+
+
         <div className='absolute top-12 right-8'>
           {method === 'signin' ? (
             <>
               Don't you have an account?{' '}
               <span
-                onClick={handleSignUpClick} 
+                onClick={handleSignUpClick}
                 className='underline cursor-pointer'
               >
                 Sign Up
@@ -44,7 +52,7 @@ const LogIn: React.FC = () => {
             <>
               Already have an account?{' '}
               <span
-                onClick={handleSignInClick} 
+                onClick={handleSignInClick}
                 className='underline cursor-pointer'
               >
                 Sign In
