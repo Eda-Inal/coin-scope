@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
                     <li><LanguageNavbar /></li>
                     <li>
                         <Link href="/login">
-                            <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-1 w-28 rounded-md">
+                            <button className="bg-primary hover:bg-sky-600  text-white px-4 py-1 w-28 rounded-md">
                                 {t.signIn}
                             </button>
                         </Link>
@@ -50,9 +50,9 @@ const Navbar: React.FC = () => {
 
                 <div className="sm:hidden">
                     {isMenuOpen ?
-                        <CloseIcon className="text-blue-500 cursor-pointer" onClick={handleHamburgerClick} />
+                        <CloseIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
                         :
-                        <HamburgerIcon className="text-blue-500 cursor-pointer" onClick={handleHamburgerClick} />
+                        <HamburgerIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
                     }
                 </div>
             </ul>
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
                         <Image src={Logo} width={32} height={32} alt="Logo" />
                         <div>CryptoTrack</div>
                     </div>
-                    <CloseIcon onClick={handleHamburgerClick} className='cursor-pointer text-blue-500' />
+                    <CloseIcon onClick={handleHamburgerClick} className='cursor-pointer text-primary' />
                 </div>
                 <ul className="flex flex-col gap-4 mt-8 items-center">
                     <li onClick={handleThemeChange} className="flex cursor-pointer gap-2 border px-4 py-1 w-28 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600" >
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
                     <li><LanguageNavbar /></li>
                     <li>
                         <Link href="/login">
-                            <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-1 w-28 rounded-md" onClick={handleHamburgerClick}>
+                            <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md" onClick={handleHamburgerClick}>
                                 {t.signIn}
                             </button>
                         </Link>

@@ -41,7 +41,7 @@ const SignUp: React.FC = () => {
                 </span>
             </div>
 
-            <button className='w-72 bg-primary text-white px-4 py-3 rounded-full'>
+            <button className='w-72 bg-primary  hover:bg-sky-600  text-white px-4 py-3 rounded-full'>
                 {t.signUp}
             </button>
             <div className="relative flex items-center">
