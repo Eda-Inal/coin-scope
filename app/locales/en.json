@@ -1,5 +1,19 @@
 {
-    "language": "Language",
-    "welcome": "Welcome to our website"
-  }
-  
+  "language": "Language",
+  "welcome": "Welcome to our website",
+  "signInTitle": "Sign in to CryptoTrack",
+  "signUpTitle": "Sign up to CryptoTrack",
+  "noAccountMessage": "Don't you have an account?",
+  "signUpLink": "Sign Up",
+  "haveAccountMessage": "Already have an account?",
+  "signInLink": "Sign In",
+  "continueWithGoogle": "Continue with Google",
+  "or": "or",
+  "continueWithMail": "Continue with Mail",
+  "enterYourEmail": "Enter your email",
+  "enterYourPassword": "Enter your password",
+  "confirmYourPassword": "Confirm your password",
+  "signUp": "Sign Up",
+  "signUpWithGoogle": "Sign up with Google",
+  "signIn": "Sign In "
+}

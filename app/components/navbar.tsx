@@ -10,12 +10,15 @@ import { toggleTheme } from '../features/theme'
 import LanguageNavbar from './languageNavbar';
 import { setIsMenuOpen } from '../features/navbarSlice'
 import Link from 'next/link'
+import { getTranslation } from '../utils/getTranslation'
 
 
 const Navbar: React.FC = () => {
     const dispatch = useDispatch();
     const mode = useSelector((state: RootState) => state.theme.mode);
     const isMenuOpen = useSelector((state: RootState) => state.navbar.isMenuOpen);
+    const locale = useSelector((state: RootState) => state.language.locale);
+    const t = getTranslation(locale);
     const handleThemeChange = () => {
         dispatch(toggleTheme());
     };
@@ -38,7 +41,7 @@ const Navbar: React.FC = () => {
                     <li>
                         <Link href="/login">
                             <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-1 w-28 rounded-md">
-                                Log In
+                                {t.signIn}
                             </button>
                         </Link>
                     </li>
@@ -72,7 +75,7 @@ const Navbar: React.FC = () => {
                     <li>
                         <Link href="/login">
                             <button className="bg-blue-500 hover:bg-blue-400 text-white px-4 py-1 w-28 rounded-md" onClick={handleHamburgerClick}>
-                                Log In
+                                {t.signIn}
                             </button>
                         </Link>
                     </li>

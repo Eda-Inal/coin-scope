@@ -6,11 +6,15 @@ import SignUp from '../components/signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthMethod } from '../features/authSlice';
 import Mail from '../components/mail';
+import { RootState } from '../store';
+import { getTranslation } from '../utils/getTranslation';
 
 const LogIn: React.FC = () => {
   const dispatch = useDispatch();
   const method = useSelector((state: any) => state.auth.method);
   console.log(method);
+  const locale = useSelector((state: RootState) => state.language.locale);
+  const t = getTranslation(locale);
 
   const handleSignUpClick = () => {
     dispatch(setAuthMethod('signup'));
@@ -29,7 +33,7 @@ const LogIn: React.FC = () => {
       <div className=' py-24 w-full lg:w-1/2 '>
 
         <div className=' mb-8 w-72 mx-auto text-lg '>
-          {method === 'signin' || method === 'email' ? 'Sign in to CryptoTrack' : 'Sign up to CryptoTrack'}
+          {method === 'signin' || method === 'email' ? t.signInTitle : t.signUpTitle}
 
         </div>
         <div className='w-72 max-w-md  mx-auto  '>
@@ -44,22 +48,22 @@ const LogIn: React.FC = () => {
         <div className='absolute top-4 right-8 text-sm '>
           {method === 'signin' || method === 'email' ? (
             <>
-              Don't you have an account?{' '}
+              {t.noAccountMessage}{' '}
               <span
                 onClick={handleSignUpClick}
                 className='underline cursor-pointer'
               >
-                Sign Up
+                {t.signUpLink}
               </span>
             </>
           ) : (
             <>
-              Already have an account?{' '}
+              {t.haveAccountMessage}{' '}
               <span
                 onClick={handleSignInClick}
                 className='underline cursor-pointer'
               >
-                Sign In
+                {t.signInLink}
               </span>
             </>
           )}

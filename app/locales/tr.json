@@ -1,5 +1,19 @@
 {
-    "language": "Dil",
-    "welcome": "Web sitemize hoş geldiniz"
-  }
-  
+  "language": "Dil",
+  "welcome": "Web sitemize hoş geldiniz",
+  "signInTitle": "CryptoTrack'e giriş yapın",
+  "signUpTitle": "CryptoTrack'e üye olun",
+  "noAccountMessage": "Hesabınız yok mu?",
+  "signUpLink": "Kayıt Ol",
+  "haveAccountMessage": "Zaten bir hesabınız var mı?",
+  "signInLink": "Giriş Yap",
+  "continueWithGoogle": "Google ile devam et",
+  "or": "ya da",
+  "continueWithMail": "E-posta ile devam et",
+  "enterYourEmail": "E-posta adresinizi girin",
+  "enterYourPassword": "Şifrenizi girin",
+  "confirmYourPassword": "Şifrenizi onaylayın",
+  "signUp": "Kayıt Ol",
+  "signUpWithGoogle": "Google ile kayıt ol",
+  "signIn": "Giriş yap"
+}

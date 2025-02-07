@@ -1,13 +1,18 @@
 import React from 'react'
 import Image from 'next/image'
+import { RootState } from '../store'
+import { getTranslation } from '../utils/getTranslation'
+import { useSelector } from 'react-redux'
 
 const Mail: React.FC = () => {
+    const locale = useSelector((state: RootState) => state.language.locale);
+    const t = getTranslation(locale);
     return (
         <div className='flex flex-col  gap-8 '>
             <div className="relative w-72">
                 <input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t.enterYourEmail}
                     className='w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10'
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -17,7 +22,7 @@ const Mail: React.FC = () => {
             <div className="relative w-72">
                 <input
                     type="password"
-                    placeholder="Enter your password"
+                    placeholder={t.enterYourPassword}
                     className='w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10'
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
@@ -27,7 +32,7 @@ const Mail: React.FC = () => {
 
 
             <button className='w-72 bg-primary text-white px-4 py-3 rounded-full'>
-                Sign In
+                {t.signIn}
             </button>
 
         </div>
