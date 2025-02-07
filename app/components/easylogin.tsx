@@ -25,7 +25,7 @@ const EasyLogin: React.FC = () => {
                 <Image src="/mail.png" alt="google icon" width={20} height={20} quality={80} />
                 <span>Continue with Mail</span>
             </button>
-          
+
 
 
 
