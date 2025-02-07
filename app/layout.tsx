@@ -4,6 +4,7 @@ import "./globals.css";
 import { Provider, useSelector } from "react-redux";
 import { store } from "./store";
 import { RootState } from "./store";
+import Navbar from "./components/navbar";
 
 
 const roboto = Roboto({
@@ -36,6 +37,7 @@ const ThemeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={mode === "dark" ? "dark" : ""}>
       <body className={`${roboto.variable} antialiased`}>
+        <Navbar />
         {children}
       </body>
     </html>

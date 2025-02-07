@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   const t = getTranslation(locale);
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h1 className="text-2xl font-bold">{t.welcome}</h1>
 
     </div>

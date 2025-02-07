@@ -28,7 +28,7 @@ const LanguageNavbar: React.FC = () => {
                 {language}
             </button>
             {isOpen && (
-                <ul className="absolute  mt-1 w-28 flex flex-col items-start bg-lightBackground dark:bg-darkBackground  shadow-md rounded-sm left-1/2 transform -translate-x-1/2 text-sm">
+                <ul className="absolute z-40  mt-1 w-28 flex flex-col items-start bg-lightBackground dark:bg-darkBackground  shadow-md rounded-sm left-1/2 transform -translate-x-1/2 text-sm">
                     <li className="px-4 py-2 flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 gap-2 border-b w-full"
                         onClick={() => handleLanguageChange("en")}
                     >
