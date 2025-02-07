@@ -30,9 +30,10 @@ const LogIn: React.FC = () => {
       <div className='w-1/2  py-12 hidden lg:block'>
         <LoginLeft />
       </div>
-      <div className=' py-24 w-full lg:w-1/2 '>
+      <div className=' py-20 w-full lg:w-1/2 '>
 
-        <div className=' mb-8 w-72 mx-auto text-lg '>
+        <div className=' mb-6 w-72 mx-auto'>
+
           {method === 'signin' || method === 'email' ? t.signInTitle : t.signUpTitle}
 
         </div>
@@ -40,34 +41,35 @@ const LogIn: React.FC = () => {
           {method === 'signin' && <EasyLogin />}
           {method === 'signup' && <SignUp />}
           {method === 'email' && <Mail />}
+          <div className=' text-sm mt-6'>
+            {method === 'signin' || method === 'email' ? (
+              <>
+                {t.noAccountMessage}{' '}
+                <span
+                  onClick={handleSignUpClick}
+                  className='underline cursor-pointer'
+                >
+                  {t.signUpLink}
+                </span>
+              </>
+            ) : (
+              <>
+                {t.haveAccountMessage}{' '}
+                <span
+                  onClick={handleSignInClick}
+                  className='underline cursor-pointer'
+                >
+                  {t.signInLink}
+                </span>
+              </>
+            )}
+          </div>
         </div>
 
 
 
 
-        <div className='absolute top-4 right-8 text-sm '>
-          {method === 'signin' || method === 'email' ? (
-            <>
-              {t.noAccountMessage}{' '}
-              <span
-                onClick={handleSignUpClick}
-                className='underline cursor-pointer'
-              >
-                {t.signUpLink}
-              </span>
-            </>
-          ) : (
-            <>
-              {t.haveAccountMessage}{' '}
-              <span
-                onClick={handleSignInClick}
-                className='underline cursor-pointer'
-              >
-                {t.signInLink}
-              </span>
-            </>
-          )}
-        </div>
+
       </div>
     </div>
   );
