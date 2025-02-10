@@ -7,12 +7,14 @@ import { getTranslation } from '../utils/getTranslation'
 import { useSelector } from 'react-redux'
 import { signInWithGoogle } from '../services/authService'
 import { setUser } from '../features/userSlice'
+import { useRouter } from 'next/navigation';
 
 const EasyLogin: React.FC = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const handleGoogleClick = async () => {
         try {
-            const user = await signInWithGoogle(); 
+            const user = await signInWithGoogle();
             if (user) {
                 dispatch(setUser({
                     uid: user.uid,
@@ -21,6 +23,7 @@ const EasyLogin: React.FC = () => {
                     photoURL: user.photoURL,
                 }));
                 console.log("Sign in with google is success!");
+                router.push("/");
             }
         } catch (error) {
             console.error("Sign is not success!:", error);

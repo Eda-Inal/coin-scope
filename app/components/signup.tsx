@@ -6,13 +6,15 @@ import { useSelector } from 'react-redux'
 import { signInWithGoogle } from '../services/authService'
 import { setUser } from '../features/userSlice'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/navigation';
 
 const SignUp: React.FC = () => {
 
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
     const dispatch = useDispatch()
-    const handleGoogleSignUp = async () => {
+    const router = useRouter();
+    const handleGoogleClick = async () => {
         try {
             const user = await signInWithGoogle();
             if (user) {
@@ -22,10 +24,11 @@ const SignUp: React.FC = () => {
                     displayName: user.displayName,
                     photoURL: user.photoURL,
                 }));
-                console.log("Sign up with google is success!");
+                console.log("Sign in with google is success!");
+                router.push("/");
             }
         } catch (error) {
-            console.error("Sign in with google is not success!", error);
+            console.error("Sign is not success!:", error);
         }
     };
     return (
@@ -69,9 +72,9 @@ const SignUp: React.FC = () => {
                 <span className="px-2 text-gray-500 dark:text-gray-400 text-sm">{t.or}</span>
                 <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
             </div>
-            <button onClick={handleGoogleSignUp} className='w-72 dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full flex items-center gap-6'>
+            <button onClick={handleGoogleClick} className='w-72 dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full flex items-center gap-6'>
                 <Image src="/google.png" alt="google icon" width={20} height={20} quality={80} />
-                <span>{t.signUpWithGoogle}</span>
+                <span>{t.continueWithGoogle}</span>
             </button>
 
         </div>
