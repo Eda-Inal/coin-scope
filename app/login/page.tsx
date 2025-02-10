@@ -8,6 +8,7 @@ import { setAuthMethod } from '../features/authSlice';
 import Mail from '../components/mail';
 import { RootState } from '../store';
 import { getTranslation } from '../utils/getTranslation';
+import { setSignUpMail } from '../features/authSlice';
 
 const LogIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const LogIn: React.FC = () => {
 
   const handleSignInClick = () => {
     dispatch(setAuthMethod('signin'));
+    dispatch(setSignUpMail(false))
   };
 
 
