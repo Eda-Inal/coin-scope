@@ -15,5 +15,8 @@
   "confirmYourPassword": "Şifrenizi onaylayın",
   "signUp": "Kayıt Ol",
   "signUpWithGoogle": "Google ile kayıt ol",
-  "signIn": "Giriş yap"
+  "signIn": "Giriş yap",
+  "mailError": "Geçerli bir mail girin",
+  "passwordError": "Şifre en az 8 karakter olmalı ve bir büyük harf içermelidir.",
+  "passwordMatchError": "Şifreler uyuşmuyor!"
 }

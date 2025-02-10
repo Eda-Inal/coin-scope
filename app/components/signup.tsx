@@ -20,18 +20,24 @@ const SignUp: React.FC = () => {
         dispatch(setSignUpMail(true));
     }
     return (
-        <div className='flex flex-col  gap-8 '>
+        <div >
             {
                 !isMail ? (
-                    <>
+
+                    <div className='flex flex-col  gap-8 '>
                         <GoogleAuth />
                         <Or />
                         <button onClick={handleMail} className='w-72 dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full flex items-center gap-6'>
                             <Image src="/mail.png" alt="google icon" width={20} height={20} quality={80} />
                             <span>{t.continueWithMail}</span>
                         </button>
-                    </>
-                ) : <SignUpMail />
+                    </div>
+
+                ) : (
+                    <div className='flex flex-col  gap-3 ' >
+                        <SignUpMail />
+                    </div>
+                )
             }
         </div>
     )

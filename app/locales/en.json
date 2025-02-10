@@ -15,5 +15,8 @@
   "confirmYourPassword": "Confirm your password",
   "signUp": "Sign Up",
   "signUpWithGoogle": "Sign up with Google",
-  "signIn": "Sign In "
+  "signIn": "Sign In ",
+  "mailError": "Enter a valid email",
+  "passwordError": "Password must be at least 8 characters long and contain one uppercase letter.",
+  "passwordMatchError": "Passwords do not match!"
 }
