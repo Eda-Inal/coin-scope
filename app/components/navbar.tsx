@@ -35,12 +35,12 @@ const Navbar: React.FC = () => {
                         <li>CryptoTrack</li>
                     </div>
                 </Link>
-                <div className="hidden sm:flex sm:gap-4 sm:items-center">
+                <div className="hidden sm:flex sm:gap-5 sm:items-center">
                     <li><ChangeTheme /></li>
                     <li><LanguageNavbar /></li>
                     <li>
                         <Link href="/login">
-                            <button className="bg-primary hover:bg-sky-600  text-white px-4 py-1 w-28 rounded-md">
+                            <button className="bg-primary hover:bg-sky-600  text-white py-1 w-28 rounded-md  font-semibold">
                                 {t.signIn}
                             </button>
                         </Link>
@@ -67,14 +67,14 @@ const Navbar: React.FC = () => {
                     <CloseIcon onClick={handleHamburgerClick} className='cursor-pointer text-primary' />
                 </div>
                 <ul className="flex flex-col gap-4 mt-8 items-center">
-                    <li onClick={handleThemeChange} className="flex cursor-pointer gap-2 border px-4 py-1 w-28 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600" >
+                    <li onClick={handleThemeChange} className="flex cursor-pointer gap-2 border-b px-4 py-1 w-28 hover:border-b hover:border-primary  text-md " >
                         Theme
                         {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
                     <li>
                         <Link href="/login">
-                            <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md" onClick={handleHamburgerClick}>
+                            <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
                                 {t.signIn}
                             </button>
                         </Link>

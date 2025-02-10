@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { EnglishFlag, TurkishFlag, GermanyFlag } from './Icons/flagsIcon';
 import { setLanguage } from '../features/languageSlice';
 import { RootState } from '../store';
 import { useDispatch, useSelector } from "react-redux";
@@ -20,29 +19,27 @@ const LanguageNavbar: React.FC = () => {
         <div className="relative ">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="px-4 py-1 w-28  border rounded-md hover:bg-lightSecondary  dark:hover:bg-darkSecondary text-sm flex items-center justify-between "
+                className="px-4 py-1 w-28  border-b   hover:border-b hover:border-primary "
             >
-                {language === "English" && <EnglishFlag />}
-                {language === "Türkçe" && <TurkishFlag />}
-                {language === "Deutsch" && <GermanyFlag />}
+
                 {language}
             </button>
             {isOpen && (
                 <ul className="absolute z-40  mt-1 w-28 flex flex-col items-start bg-lightBackground dark:bg-darkBackground   shadow-md rounded-sm left-1/2 transform -translate-x-1/2 text-sm">
-                    <li className="px-4 py-1 flex items-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2 border-b w-full"
+                    <li className="px-4 py-1 text-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2  w-full"
                         onClick={() => handleLanguageChange("en")}
                     >
-                        <EnglishFlag /> English
+                        English
                     </li>
-                    <li className="px-4 py-1 flex items-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2 border-b w-full"
+                    <li className="px-4 py-1 text-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2  w-full"
                         onClick={() => handleLanguageChange("tr")}
                     >
-                        <TurkishFlag /> Türkçe
+                        Türkçe
                     </li>
-                    <li className="px-4 py-1 flex items-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2"
+                    <li className="px-4 py-1 text-center cursor-pointer hover:bg-lightSecondary  dark:hover:bg-darkSecondary gap-2  w-full"
                         onClick={() => handleLanguageChange("de")}
                     >
-                        <GermanyFlag /> Deutsch
+                        Deutsch
                     </li>
                 </ul>
             )}
