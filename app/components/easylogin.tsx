@@ -5,30 +5,11 @@ import { setAuthMethod } from '../features/authSlice'
 import { RootState } from '../store'
 import { getTranslation } from '../utils/getTranslation'
 import { useSelector } from 'react-redux'
-import { signInWithGoogle } from '../services/authService'
-import { setUser } from '../features/userSlice'
-import { useRouter } from 'next/navigation';
+import GoogleAuth from './googleAuth'
+import Or from './or'
 
 const EasyLogin: React.FC = () => {
     const dispatch = useDispatch();
-    const router = useRouter();
-    const handleGoogleClick = async () => {
-        try {
-            const user = await signInWithGoogle();
-            if (user) {
-                dispatch(setUser({
-                    uid: user.uid,
-                    email: user.email!,
-                    displayName: user.displayName,
-                    photoURL: user.photoURL,
-                }));
-                console.log("Sign in with google is success!");
-                router.push("/");
-            }
-        } catch (error) {
-            console.error("Sign is not success!:", error);
-        }
-    };
     const handleMailClick = () => {
         dispatch(setAuthMethod('email'));
     };
@@ -38,15 +19,8 @@ const EasyLogin: React.FC = () => {
     return (
         <div className='flex flex-col justify-center gap-8'>
 
-            <button onClick={handleGoogleClick} className='w-72 dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full flex items-center gap-6'>
-                <Image src="/google.png" alt="google icon" width={20} height={20} quality={80} />
-                <span>{t.continueWithGoogle}</span>
-            </button>
-            <div className="relative flex items-center">
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-                <span className="px-2 text-gray-500 dark:text-gray-400 text-sm">{t.or}</span>
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-            </div>
+            <GoogleAuth />
+            <Or />
             <button onClick={handleMailClick} className='w-72 dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full flex items-center gap-6'>
                 <Image src="/mail.png" alt="google icon" width={20} height={20} quality={80} />
                 <span>{t.continueWithMail}</span>
