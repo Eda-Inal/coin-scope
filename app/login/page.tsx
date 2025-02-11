@@ -33,8 +33,8 @@ const LogIn: React.FC = () => {
 
 
   return (
-    <div className='flex relative '>
-      <div className='w-1/2  py-12 hidden lg:block'>
+    <div className='flex relative  '>
+      <div className='w-1/2  hidden lg:block'>
         <LoginLeft />
       </div>
       <div className=' py-20 w-full lg:w-1/2 '>

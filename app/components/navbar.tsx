@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="relative py-3 px-2 sm:px-8 shadow-md dark:shadow-[0_2px_3px_0_rgba(255,255,255,0.2)]">
+        <nav className="relative py-3 px-2 sm:px-8  ">
             <ul className="flex justify-between items-center">
                 <Link href="/">
                     <div className="flex items-center gap-1 cursor-pointer">
