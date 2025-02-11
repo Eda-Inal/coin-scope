@@ -15,7 +15,7 @@ const Home: React.FC = () => {
   const triggerNotification = () => {
     dispatch(
       showNotification({
-        message: 'This is a success message!',
+        message: t.signInToast,
         type: 'success',
       })
     );

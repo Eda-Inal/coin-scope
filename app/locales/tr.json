@@ -20,5 +20,11 @@
   "passwordError": "Şifre en az 8 karakter olmalı ve bir büyük harf içermelidir.",
   "passwordMatchError": "Şifreler uyuşmuyor!",
   "userError": "Hesabınız bulunamadı. Lütfen tekrar deneyin",
-  "registerFail": "Kayıt oluşturulurken bir hata oluştu"
+  "registerFail": "Kayıt oluşturulurken bir hata oluştu",
+  "profile": "Profilim",
+  "fav": "Favoriler",
+  "signout": "Çıkış yap",
+  "signInToast": "Giriş başarılı",
+  "signOutToast": "Profilden çıkış yapıldı.",
+  "signOutError": "Çıkış yaparken bir sorun oluştu."
 }
