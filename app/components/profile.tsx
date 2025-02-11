@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../features/userSlice';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
+import { showNotification } from '../features/notifactionSlice';
 
 
 const Profile: React.FC = () => {
@@ -14,8 +15,20 @@ const Profile: React.FC = () => {
         try {
             await signOut(auth);
             dispatch(logOut());
+            dispatch(
+                showNotification({
+                    message: 'You have successfully signed out!',
+                    type: 'success',
+                })
+            );
         } catch (error) {
             console.error("Sign-out failed:", error);
+            dispatch(
+                showNotification({
+                    message: 'Sign-out failed. Please try again.',
+                    type: 'error',
+                })
+            );
         }
     };
     return (

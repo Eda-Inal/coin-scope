@@ -1,17 +1,37 @@
 'use client'
-import React from "react";
-import Navbar from "./components/navbar";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
 import { getTranslation } from "./utils/getTranslation";
+import { showNotification } from "./features/notifactionSlice";
+import Notification from "./components/notification";
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
   const locale = useSelector((state: RootState) => state.language.locale);
   const t = getTranslation(locale);
+
+  const triggerNotification = () => {
+    dispatch(
+      showNotification({
+        message: 'This is a success message!',
+        type: 'success',
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      triggerNotification();
+    }
+  }, [isAuthenticated, dispatch]);
+
   return (
     <div>
-      {/* <Navbar /> */}
       <h1 className="text-2xl font-bold">{t.welcome}</h1>
+      <Notification />
+
 
     </div>
   );
