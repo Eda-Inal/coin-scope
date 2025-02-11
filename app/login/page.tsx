@@ -9,6 +9,7 @@ import Mail from '../components/mail';
 import { RootState } from '../store';
 import { getTranslation } from '../utils/getTranslation';
 import { setSignUpMail } from '../features/authSlice';
+import { setWarning } from '../features/userSlice';
 
 const LogIn: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,15 +17,19 @@ const LogIn: React.FC = () => {
   console.log(method);
   const locale = useSelector((state: RootState) => state.language.locale);
   const t = getTranslation(locale);
+  const warning = useSelector((state: RootState) => state.user.warning);
 
   const handleSignUpClick = () => {
     dispatch(setAuthMethod('signup'));
+    dispatch(setWarning(null))
   };
 
   const handleSignInClick = () => {
     dispatch(setAuthMethod('signin'));
     dispatch(setSignUpMail(false))
+    dispatch(setWarning(null))
   };
+
 
 
   return (
@@ -65,6 +70,7 @@ const LogIn: React.FC = () => {
                 </span>
               </>
             )}
+             {warning && <p className="text-red-500 mt-6">{t[warning]}</p>}
           </div>
         </div>
 
