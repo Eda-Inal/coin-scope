@@ -19,5 +19,6 @@
   "mailError": "Enter a valid email",
   "passwordError": "Password must be at least 8 characters long and contain one uppercase letter.",
   "passwordMatchError": "Passwords do not match!",
-  "userError" : "Your account was not found. Please try again!"
+  "userError": "Your account was not found. Please try again!",
+  "registerFail": "An error occurred while creating the account."
 }

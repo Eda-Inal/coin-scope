@@ -19,5 +19,6 @@
   "mailError": "Geçerli bir mail girin",
   "passwordError": "Şifre en az 8 karakter olmalı ve bir büyük harf içermelidir.",
   "passwordMatchError": "Şifreler uyuşmuyor!",
-  "userError" : "Hesabınız bulunamadı. Lütfen tekrar deneyin"
+  "userError": "Hesabınız bulunamadı. Lütfen tekrar deneyin",
+  "registerFail": "Kayıt oluşturulurken bir hata oluştu"
 }

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { getTranslation } from '../utils/getTranslation';
 import { signUpWithEmail } from '../services/authService';
-import { setUser } from '../features/userSlice';
+import { setUser, setWarning } from '../features/userSlice';
 
 const SignUpMail: React.FC = () => {
     const dispatch = useDispatch();
@@ -16,43 +16,53 @@ const SignUpMail: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [passwordMatchError, setPasswordMatchError] = useState(false);
 
     const validateEmail = (email: string) => {
         const emailRegex = /\S+@\S+\.\S+/;
         if (!emailRegex.test(email)) {
-            setEmailError("Enter a valid email");
-        } else {
-            setEmailError("");
+            setEmailError(true);
+            dispatch(setWarning("mailError"));
+            return false;
         }
+        setEmailError(false);
+        dispatch(setWarning(null));
+        return true; // 
     };
 
     const validatePassword = (password: string) => {
         const passwordRegex = /(?=.*[A-Z]).{8,}/;
         if (!passwordRegex.test(password)) {
-            setPasswordError("Password must be at least 8 characters long and contain one uppercase letter");
-        } else {
-            setPasswordError("");
+            setPasswordError(true);
+            dispatch(setWarning("passwordError"));
+            return false;
         }
+        setPasswordError(false);
+        return true;
     };
 
     const validateConfirmPassword = (confirmPassword: string) => {
         if (confirmPassword !== password) {
-            setConfirmPasswordError("Passwords do not match!");
-        } else {
-            setConfirmPasswordError("");
+            setPasswordMatchError(true);
+            dispatch(setWarning("passwordMatchError"));
+            return false;
         }
+        setPasswordMatchError(false);
+        return true;
     };
 
     const handleSignUp = async () => {
-        validateEmail(email);
-        validatePassword(password);
-        validateConfirmPassword(confirmPassword);
 
-        if (emailError || passwordError || confirmPasswordError) return;
+        const isEmailValid = validateEmail(email);
+        const isPasswordValid = validatePassword(password);
+        const isConfirmPasswordValid = validateConfirmPassword(confirmPassword);
+
+
+        if (!isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
+            return;
+        }
 
         try {
             const user = await signUpWithEmail(email, password);
@@ -67,9 +77,7 @@ const SignUpMail: React.FC = () => {
 
             router.push("/");
         } catch (error) {
-            setEmailError("Register fail, please try again.");
-            console.log(emailError);
-            
+            dispatch(setWarning("registerFail"));
         }
     };
 
@@ -79,61 +87,43 @@ const SignUpMail: React.FC = () => {
                 <input
                     type="email"
                     placeholder={t.enterYourEmail}
-                    className='w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10'
+                    className={`w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10 
+                        ${emailError ? "border-2 border-red-500 " : ""}`}
                     value={email}
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                        validateEmail(e.target.value);
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
                     <Image src="/mail.png" alt="Mail Icon" width={20} height={20} />
                 </span>
-
             </div>
-            <p className={`text-red-500 text-xs   ${emailError ? "visible" : "invisible"}`}>
-                {t.mailError || "Boş"}
-            </p>
 
             <div className="relative w-72">
                 <input
                     type="password"
                     placeholder={t.enterYourPassword}
-                    className='w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10'
+                    className={`w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10
+                        ${passwordError || passwordMatchError ? "border-2 border-red-500" : ""}`}
                     value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                        validatePassword(e.target.value);
-                    }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
                     <Image src="/password.png" alt="Password Icon" width={20} height={20} />
                 </span>
-
             </div>
-            <p className={`text-red-500 text-xs   ${passwordError ? "visible" : "invisible"}`}>
-                {t.passwordError || "Boş"}
-            </p>
 
             <div className="relative w-72">
                 <input
                     type="password"
                     placeholder={t.confirmYourPassword}
-                    className='w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10'
+                    className={`w-full dark:bg-darkSecondary bg-lightSecondary px-4 py-3 rounded-full pl-10
+                        ${passwordError || passwordMatchError ? "border-2 border-red-500" : ""}`}
                     value={confirmPassword}
-                    onChange={(e) => {
-                        setConfirmPassword(e.target.value);
-                        validateConfirmPassword(e.target.value);
-                    }}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
                     <Image src="/password.png" alt="Password Icon" width={20} height={20} />
                 </span>
-
             </div>
-            <p className={`text-red-500 text-xs   ${confirmPasswordError ? "visible" : "invisible"}`}>
-                {t.passwordMatchError || "Boş"}
-            </p>
 
             <button onClick={handleSignUp} className='w-72 bg-primary hover:bg-sky-600 text-white px-4 py-3 rounded-full'>
                 {t.signUp}
@@ -143,6 +133,3 @@ const SignUpMail: React.FC = () => {
 };
 
 export default SignUpMail;
-
-
-
