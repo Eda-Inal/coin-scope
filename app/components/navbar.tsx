@@ -11,6 +11,7 @@ import LanguageNavbar from './languageNavbar';
 import { setIsMenuOpen } from '../features/navbarSlice'
 import Link from 'next/link'
 import { getTranslation } from '../utils/getTranslation'
+import Profile from './profile'
 
 
 const Navbar: React.FC = () => {
@@ -19,6 +20,7 @@ const Navbar: React.FC = () => {
     const isMenuOpen = useSelector((state: RootState) => state.navbar.isMenuOpen);
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
+    const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
     const handleThemeChange = () => {
         dispatch(toggleTheme());
     };
@@ -38,13 +40,17 @@ const Navbar: React.FC = () => {
                 <div className="hidden sm:flex sm:gap-5 sm:items-center">
                     <li><ChangeTheme /></li>
                     <li><LanguageNavbar /></li>
-                    <li>
-                        <Link href="/login">
-                            <button className="bg-primary hover:bg-sky-600  text-white py-1 w-28 rounded-md  font-semibold">
-                                {t.signIn}
-                            </button>
-                        </Link>
-                    </li>
+                    {isAuthenticated ? (
+                        <li><Profile /></li>
+                    ) : (
+                        <li>
+                            <Link href="/login">
+                                <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
+                                    {t.signIn}
+                                </button>
+                            </Link>
+                        </li>
+                    )}
                 </div>
 
 
@@ -72,13 +78,17 @@ const Navbar: React.FC = () => {
                         {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
-                    <li>
-                        <Link href="/login">
-                            <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
-                                {t.signIn}
-                            </button>
-                        </Link>
-                    </li>
+                    {isAuthenticated ? (
+                        <li><Profile /></li>
+                    ) : (
+                        <li>
+                            <Link href="/login">
+                                <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
+                                    {t.signIn}
+                                </button>
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>
