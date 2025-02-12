@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { getTranslation } from '../utils/getTranslation';
-import { signUpWithEmail } from '../services/authService';
-import { setUser, setWarning } from '../features/userSlice';
+import { RootState } from '../../store';
+import { getTranslation } from '../../utils/getTranslation';
+import { signUpWithEmail } from '../../services/authService';
+import { setUser, setWarning } from '../../features/userSlice';
 
 const SignUpMail: React.FC = () => {
     const dispatch = useDispatch();

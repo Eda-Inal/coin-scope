@@ -1,6 +1,6 @@
 import React from 'react'
-import { RootState } from '../store'
-import { getTranslation } from '../utils/getTranslation'
+import { RootState } from '@/app/store'
+import { getTranslation } from '@/app/utils/getTranslation'
 import { useSelector } from 'react-redux'
 
 const Or: React.FC = () => {

@@ -9,7 +9,7 @@ const initialState: NavbarState = {
 };
 
 const NavbarSlice = createSlice({
-    name: "navbar",
+    name: 'navbar',
     initialState,
     reducers: {
         setIsMenuOpen: (state) => {

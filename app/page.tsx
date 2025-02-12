@@ -28,12 +28,14 @@ const Home: React.FC = () => {
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">{t.welcome}</h1>
-      <Notification />
+    <>
+    <Notification />
 
 
-    </div>
+
+
+
+    </>
   );
 };
 

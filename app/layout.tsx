@@ -4,7 +4,7 @@ import "./globals.css";
 import { Provider, useSelector } from "react-redux";
 import { store } from "./store";
 import { RootState } from "./store";
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbar/navbar";
 
 
 const roboto = Roboto({

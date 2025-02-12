@@ -1,16 +1,16 @@
 'use client'
 import React from 'react'
-import Logo from "../../public/coin.png"
+import Logo from "../../../public/coin.png"
 import Image from 'next/image'
-import ChangeTheme from './changeTheme'
-import { HamburgerIcon, CloseIcon, DarkIcon, LightIcon } from './Icons/icons'
+import ChangeTheme from '../theme/changeTheme'
+import { HamburgerIcon, CloseIcon, DarkIcon, LightIcon } from '../Icons/icons'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../store'
-import { toggleTheme } from '../features/theme'
+import { RootState } from '../../store'
+import { toggleTheme } from '../../features/theme'
 import LanguageNavbar from './languageNavbar';
-import { setIsMenuOpen } from '../features/navbarSlice'
+import { setIsMenuOpen } from '../../features/navbarSlice'
 import Link from 'next/link'
-import { getTranslation } from '../utils/getTranslation'
+import { getTranslation } from '../../utils/getTranslation'
 import Profile from './profile'
 
 
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="relative py-3 px-2 sm:px-8  ">
+        <nav className="relative py-3 px-2 sm:px-8 border-b  ">
             <ul className="flex justify-between items-center">
                 <Link href="/">
                     <div className="flex items-center gap-1 cursor-pointer">

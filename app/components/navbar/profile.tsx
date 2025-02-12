@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { logOut } from '../features/userSlice';
+import { logOut } from '../../features/userSlice';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
-import { showNotification } from '../features/notifactionSlice';
-import { RootState } from '../store'
-import { getTranslation } from '../utils/getTranslation'
+import { showNotification } from '../../features/notifactionSlice';
+import { RootState } from '../../store'
+import { getTranslation } from '../../utils/getTranslation'
 import { useSelector } from 'react-redux'
 
 

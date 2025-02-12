@@ -1,11 +1,11 @@
 'use client'
 import React from 'react';
-import LoginLeft from '../components/loginleft';
-import EasyLogin from '../components/easylogin';
-import SignUp from '../components/signup';
+import LoginLeft from '../components/login/loginleft';
+import EasyLogin from '../components/login/easylogin';
+import SignUp from '../components/login/signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthMethod } from '../features/authSlice';
-import Mail from '../components/mail';
+import Mail from '../components/login/mail';
 import { RootState } from '../store';
 import { getTranslation } from '../utils/getTranslation';
 import { setSignUpMail } from '../features/authSlice';

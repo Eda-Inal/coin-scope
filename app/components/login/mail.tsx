@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { RootState } from '../store';
-import { getTranslation } from '../utils/getTranslation';
+import { RootState } from '../../store';
+import { getTranslation } from '../../utils/getTranslation';
 import { useSelector, useDispatch } from 'react-redux';
-import { signInWithEmail } from '../services/authService';
-import { setUser, setWarning } from '../features/userSlice';
+import { signInWithEmail } from '../../services/authService';
+import { setUser, setWarning } from '../../features/userSlice';
 import { useRouter } from 'next/navigation';
 
 const Mail: React.FC = () => {

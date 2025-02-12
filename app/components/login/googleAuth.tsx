@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import { RootState } from '../store'
-import { getTranslation } from '../utils/getTranslation'
+import { RootState } from '../../store'
+import { getTranslation } from '../../utils/getTranslation'
 import { useSelector } from 'react-redux'
-import { signInWithGoogle } from '../services/authService'
-import { setUser } from '../features/userSlice'
+import { signInWithGoogle } from '../../services/authService'
+import { setUser } from '../../features/userSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation';
 

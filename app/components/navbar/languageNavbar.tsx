@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
-import { setLanguage } from '../features/languageSlice';
-import { RootState } from '../store';
+import { setLanguage } from '../../features/languageSlice';
+import { RootState } from '../../store';
 import { useDispatch, useSelector } from "react-redux";
-import { setIsMenuOpen } from '../features/navbarSlice';
+import { setIsMenuOpen } from '../../features/navbarSlice';
 
 const LanguageNavbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
