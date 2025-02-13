@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
                 </div>
 
                 <div className="  h-full my-2 lg:hidden px-2 ">
-                    <Top />
+                    <Favourites />
                 </div>
             </div>
 
@@ -24,7 +24,8 @@ const Sidebar: React.FC = () => {
                     <div>dfdf</div>
                     <Top />
                 </div>
-                <div className=" h-full  w-1/2 rounded-md bg-lightSecondary dark:bg-darkSecondary px-2  ">
+                <div className=" h-full  w-1/2 rounded-md px-2 bg-lightSecondary dark:bg-darkSecondary  ">
+                <div>sdsdf</div>
                     <Favourites />
                 </div>
             </div>

@@ -30,7 +30,7 @@ const Home: React.FC = () => {
   return (
     <div className="lg:mx-6 mx-2 flex  flex-col h-[calc(100vh-58px)] py-3  ">
 
-      <div className="w-full  h-[230px] ">
+      <div className="w-full  h-[235px] ">
         <Sidebar />
       </div>
       <div className="w-full "></div>
