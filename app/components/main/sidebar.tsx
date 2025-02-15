@@ -7,13 +7,13 @@ const Sidebar: React.FC = () => {
         <div className="flex flex-col  h-full  ">
             {/* mobile, tablet */}
             <div className='w-full h-full bg-lightSecondary dark:bg-darkSecondary lg:hidden'>
-                <div className='flex gap-2  px-2 '>
+                <div className='flex gap-2  px-2 h-[25px] '>
                     <button className='hover:text-primary'>Your Top</button>
                     <div>|</div>
                     <button className='hover:text-primary'>Favourites</button>
                 </div>
 
-                <div className="  h-full my-2 lg:hidden px-2 ">
+                <div className="  h-full mt-1 lg:hidden px-2 ">
                     <Favourites />
                 </div>
             </div>
@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
                     <Top />
                 </div>
                 <div className=" h-full  w-1/2 rounded-md px-2 bg-lightSecondary dark:bg-darkSecondary  ">
-                <div>sdsdf</div>
+                <div className='h-[25px]'>Favs</div>
                     <Favourites />
                 </div>
             </div>
