@@ -15,11 +15,11 @@ const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
 
-    
+
     useEffect(() => {
         const updateItemsPerPage = () => {
             setItemsPerPage(window.innerWidth >= 640 ? 4 : 2);
-            setCurrentPage(0); 
+            setCurrentPage(0);
         };
 
         updateItemsPerPage();
@@ -33,13 +33,13 @@ const Favourites: React.FC = () => {
 
     return (
         <div className=" flex flex-col mt-1 relative">
-       
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm w-full mx-auto transition-transform duration-300 h-[170px]">
                 {paginatedCoins.map((coin, index) => (
-                    <div key={index} className="flex justify-between p-2 rounded-lg shadow-md w-full h-[85px] dark:bg-darkBackground bg-lightBackground gap-3">
-                        <div className="flex flex-col w-1/2 h-full justify-between">
-                            <div className="flex flex-row items-center gap-1">
-                                <div className="w-6 h-6 bg-red-200 rounded-full"></div> {/* Coin logosu için yer */}
+                    <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] border-r-2 border-b-2  gap-3">
+                        <div className="flex flex-col w-1/2 h-full justify-between ">
+                            <div className="flex flex-row items-center gap-1 ">
+                                <div className="w-6 h-6 bg-red-200 rounded-full"></div>
                                 <div className="font-semibold">{coin.name}</div>
                             </div>
                             <div className="flex items-center gap-2">
