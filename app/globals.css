@@ -4,8 +4,8 @@
 
 body {
   font-family: var(--font-roboto), sans-serif;
-  background-color: #efefef;
-  color: #2d3748;
+  background-color: #ffffff;
+  color: #363636;
 }
 
 html.dark body {

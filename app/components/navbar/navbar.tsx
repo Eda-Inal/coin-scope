@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="relative py-3 px-2 sm:px-8 border-b  ">
+        <nav className="relative py-3 px-2 sm:px-8  ">
             <ul className="flex justify-between items-center">
                 <Link href="/">
                     <div className="flex items-center gap-1 cursor-pointer">

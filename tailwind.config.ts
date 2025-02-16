@@ -10,12 +10,12 @@ export default {
     extend: {
       colors: {
         darkBackground: "#0e1629",
-        lightBackground: "#efefef ",
+        lightBackground: "#ffffff ",
         darkText: "#ffffff",
         lightText: "#2d3748",
         primary:"#0ea5e9",
-        lightSecondary:"#ffffff",
-        darkSecondary:"#172239",
+        lightSecondary:"#f7f7f7",
+        darkSecondary:"#1F2937",
         darkCard: "#2C3A66"
       },
     },

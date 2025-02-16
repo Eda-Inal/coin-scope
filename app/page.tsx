@@ -6,6 +6,7 @@ import { getTranslation } from "./utils/getTranslation";
 import { showNotification } from "./features/notifactionSlice";
 import Notification from "./components/notification";
 import Sidebar from "./components/main/sidebar";
+import Coins from "./components/main/coins";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
@@ -33,7 +34,9 @@ const Home: React.FC = () => {
       <div className="w-full  h-[235px] ">
         <Sidebar />
       </div>
-      <div className="w-full "></div>
+      <div className="w-full mt-4  ">
+        <Coins/>
+      </div>
 
 
 
