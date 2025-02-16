@@ -25,7 +25,7 @@ const Coins: React.FC = () => {
                 .map((_, index) => (
                     <div
                         key={index}
-                        className="flex flex-row justify-between items-center rounded-lg text-sm py-3 border-b  dark:border-b-gray-700"
+                        className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
                     >
                         <div className="flex-[0.5]">⭐</div>
                         <span className="flex-[0.5] text-left">{index + 1}</span>
@@ -40,7 +40,7 @@ const Coins: React.FC = () => {
 
 
                         <div className="flex-[2] text-left sm:block hidden">
-                            <div className="h-8 w-full bg-gray-200 rounded-md"></div>
+                            <div className="h-8 w-full  rounded-md"></div>
                         </div>
                     </div>
                 ))}

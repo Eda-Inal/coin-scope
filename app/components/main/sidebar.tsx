@@ -20,11 +20,11 @@ const Sidebar: React.FC = () => {
 
             {/* big screens */}
             <div className='hidden w-full  lg:flex  h-full gap-3    '>
-                <div className="  h-full w-1/2 border-b dark:border-gray-700   rounded-lg  px-2 ">
+                <div className="  h-full w-1/2 border-b dark:border-gray-700   rounded-lg  px-2 shadow-lg border-t dark:bg-darkSecondary bg-lightSecondary ">
                     <div>dfdf</div>
                     <Top />
                 </div>
-                <div className=" h-full  w-1/2 rounded-lg px-2 border-b dark:border-gray-700    ">
+                <div className=" h-full  w-1/2 rounded-lg px-2 border-b dark:border-gray-700 shadow-lg border-t  ">
                     <div className='h-[25px]'>Favs</div>
                     <Favourites />
                 </div>

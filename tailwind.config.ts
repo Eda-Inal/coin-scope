@@ -9,13 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBackground: "#0e1629",
-        lightBackground: "#ffffff ",
+        darkBackground: "#13112b",
+        lightBackground: "#f0f0f0 ",
         darkText: "#ffffff",
         lightText: "#2d3748",
         primary:"#0ea5e9",
-        lightSecondary:"#f7f7f7",
-        darkSecondary:"#1F2937",
+        lightSecondary:"#ffffff",
+        darkSecondary:"#263354",
         darkCard: "#2C3A66"
       },
     },

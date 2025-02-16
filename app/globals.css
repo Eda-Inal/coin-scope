@@ -4,12 +4,12 @@
 
 body {
   font-family: var(--font-roboto), sans-serif;
-  background-color: #ffffff;
-  color: #363636;
+  background-color: #f7f7f7;
+  color: #4e4e4e;
 }
 
 html.dark body {
-  background-color: #0e1629;
+  background-color: #13112b;
   color: #f8f8f8;
 
 }

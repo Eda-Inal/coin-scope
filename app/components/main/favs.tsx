@@ -36,7 +36,7 @@ const Favourites: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm w-full mx-auto transition-transform duration-300 h-[170px]">
                 {paginatedCoins.map((coin, index) => (
-                    <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] border-r-2 border-b-2  gap-3">
+                    <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)]   dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
                         <div className="flex flex-col w-1/2 h-full justify-between ">
                             <div className="flex flex-row items-center gap-1 ">
                                 <div className="w-6 h-6 bg-red-200 rounded-full"></div>
