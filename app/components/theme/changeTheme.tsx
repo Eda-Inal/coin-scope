@@ -18,7 +18,7 @@ const ChangeTheme: React.FC = () => {
                     checked={mode === 'dark'}
                     onChange={handleThemeChange}
                     id="theme-switch"
-                    className="peer appearance-none w-12 h-6 bg-gray-300  checked:bg-gray-600 checked:border-gray-300  rounded-full cursor-pointer transition-colors duration-300"
+                    className="peer appearance-none w-12 h-6 bg-gray-300 checked:bg-darkSecondary checked:border-gray-300  rounded-full cursor-pointer transition-colors duration-300"
                 />
                 <label
                     htmlFor="theme-switch"

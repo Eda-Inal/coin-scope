@@ -9,15 +9,15 @@ import { RootState } from '@/app/store'
 const Sidebar: React.FC = () => {
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
-    const [activeTab, setActiveTab] = useState<'top' | 'favourites'>('favourites');
+    const [activeTab, setActiveTab] = useState<'top' | 'favourites'>('top');
     return (
         <div className="flex flex-col  h-full  ">
             {/* mobile, tablet */}
             <div className='w-full h-full border-b shadow-sm lg:hidden rounded-lg'>
                 <div className='flex gap-2  px-2 h-[25px] '>
-                    <button onClick={() => setActiveTab('top')} className='hover:text-primary'>{t.top5}</button>
+                    <button onClick={() => setActiveTab('top')} className={` ${activeTab === 'top' ?  "text-primary":""}`}>{t.top5}</button>
                     <div>|</div>
-                    <button onClick={() => setActiveTab('favourites')} className='hover:text-primary'>{t.tracked}</button>
+                    <button onClick={() => setActiveTab('favourites')} className={` ${activeTab !== 'top' ?  "text-primary":""}`}>{t.tracked}</button>
                 </div>
 
                 <div className="  h-full mt-1 lg:hidden px-2 ">
