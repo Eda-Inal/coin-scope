@@ -26,5 +26,19 @@
   "signout": "Sign out",
   "signInToast": "Login successful",
   "signOutToast": "Logged out from profile.",
-  "signOutError": "An error occurred while logging out."
+  "signOutError": "An error occurred while logging out.",
+  "coin": "Coin",
+  "price": "Price",
+  "coin24": "24h",
+  "marketVolume": "Market Volume",
+  "marketCap": "Market Cap",
+  "marketCircling": "Circulating Supply",
+  "atl": "ATL",
+  "ath": "ATH",
+  "coinChart": "Chart (7 days)",
+  "emptyFavorite": "Your tracked list is empty. Start adding your favorite coins and track them easily!",
+  "tracked": "Tracked",
+  "top5": "Top 5 by Market Cap"
+  
+
 }

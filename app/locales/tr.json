@@ -26,5 +26,21 @@
   "signout": "Çıkış yap",
   "signInToast": "Giriş başarılı",
   "signOutToast": "Profilden çıkış yapıldı.",
-  "signOutError": "Çıkış yaparken bir sorun oluştu."
+  "signOutError": "Çıkış yaparken bir sorun oluştu.",
+  "coin": "Coin",
+  "price": "Fiyat",
+  "coin24": "24s",
+  "marketVolume": "Piyasa Hacmi",
+  "marketCap": "Piyasa Değeri",
+  "marketCircling": "Dolaşımdaki Arz",
+  "atl": "ATL ",
+  "ath": "ATH ",
+  "coinChart": "Grafik (7 Gün)",
+  "emptyFavorite": "Takip edilenler listeniz boş. Favori coin'lerinizi eklemeye başlayın ve kolayca takip edin!",
+  "tracked": "Takip Edilenler",
+  "top5": "İlk 5 Piyasa Değeri"
+
+
+
+  
 }

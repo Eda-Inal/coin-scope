@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
 import { Coin, toggleFavorite } from "@/app/features/coinSlice";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { getTranslation } from '@/app/utils/getTranslation'
 
 
 const Favourites: React.FC = () => {
@@ -14,6 +15,8 @@ const Favourites: React.FC = () => {
     const favoriteCoins = useSelector((state: RootState) => state.coin.favorites);
     console.log(favoriteCoins);
     const dispatch = useDispatch()
+    const locale = useSelector((state: RootState) => state.language.locale);
+    const t = getTranslation(locale);
 
     useEffect(() => {
         const updateItemsPerPage = () => {
@@ -40,7 +43,7 @@ const Favourites: React.FC = () => {
                 <div className="h-[170px]">
                     <div className=" text-gray-500 dark:text-gray-400 text-sm mt-2 flex jus items-center gap-2 ">
                         <FaStar className="text-yellow-500" />
-                        <span>Your favorites list is empty. Start adding your favorite coins! Start to follow!</span>
+                        <span>{t.emptyFavorite}</span>
                         <FaStar className="text-yellow-500" />
                     </div>
                 </div>

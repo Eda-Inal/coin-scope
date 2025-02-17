@@ -1,13 +1,19 @@
 import React from 'react'
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { RootState } from '@/app/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { Coin, toggleFavorite } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { getTranslation } from '@/app/utils/getTranslation'
 
 
 const Top: React.FC = () => {
     const dispatch = useDispatch();
     const allCoins = useSelector((state: any) => state.coin.allCoins);
+    const locale = useSelector((state: RootState) => state.language.locale);
+    const t = getTranslation(locale);
+
+
 
     const sortedCoins = [...allCoins].sort((a: Coin, b: Coin) => b.marketCap - a.marketCap);
     const top5Coins = sortedCoins.slice(0, 5);
@@ -19,11 +25,11 @@ const Top: React.FC = () => {
                     <div className="flex-[0.5]   "></div>
 
                     <span className="flex-[0.5] text-left ">#</span>
-                    <span className="flex-[1.2] text-left">Coin</span>
-                    <span className="flex-[1.2] text-left">Price</span>
-                    <span className="flex-[1.5] text-left">24s %</span>
-                    <span className="flex-[2] text-left sm:block hidden">Market Volume</span>
-                    <span className="flex-[2] text-left sm:block hidden">Market Cap</span>
+                    <span className="flex-[1.2] text-left">{t.coin}</span>
+                    <span className="flex-[1.2] text-left">{t.price}</span>
+                    <span className="flex-[1.5] text-left">{t.coin24} %</span>
+                    <span className="flex-[2] text-left sm:block hidden">{t.marketVolume}</span>
+                    <span className="flex-[2] text-left sm:block hidden">{t.marketCap}</span>
                 </div>
 
 
