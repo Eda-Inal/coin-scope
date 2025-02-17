@@ -1,4 +1,5 @@
 import React from 'react'
+import {FaRegStar,FaStar  } from "react-icons/fa";
 
 
 const Top: React.FC = () => {
@@ -10,7 +11,7 @@ const Top: React.FC = () => {
 
 
                 <div className="flex flex-row justify-between font-semibold text-sm">
-                    <div className="flex-[0.5]   ">⭐</div>
+                    <div className="flex-[0.5]   "></div>
 
                     <span className="flex-[0.5] text-left ">#</span>
                     <span className="flex-[1.2] text-left">Coin</span>
@@ -26,7 +27,7 @@ const Top: React.FC = () => {
                     .fill(null)
                     .map((_, index) => (
                         <div key={index} className="flex flex-row justify-between items-center rounded-lg text-sm">
-                            <div className="flex-[0.5]  "> ⭐
+                            <div className="flex-[0.5] "> <FaRegStar className='cursor-pointer' size={16}/>
 
                             </div>
 

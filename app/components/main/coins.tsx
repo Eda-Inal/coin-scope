@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FaStar,FaRegStar  } from "react-icons/fa";
 const Coins: React.FC = () => {
     return (
         <div className='flex flex-col gap-2 h-full w-full mt-2 justify-between  '>
@@ -27,7 +27,7 @@ const Coins: React.FC = () => {
                         key={index}
                         className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
                     >
-                        <div className="flex-[0.5]">⭐</div>
+                        <div className="flex-[0.5] cursor-pointer "><FaRegStar  size={20}/></div>
                         <span className="flex-[0.5] text-left">{index + 1}</span>
                         <span className="flex-[1.2] text-left">Coin</span>
                         <span className="flex-[1.2] text-left">Price: -</span>
