@@ -4,37 +4,68 @@ export interface Coin {
     symbol: string;
     price: number;
     change: number;
+    marketVolume: number;
+    marketCap: number;
+    circulatingSupply: number;
+    ath: number;
+    atl: number;
+    favorite: boolean
+}
+const generateRandomCoins = (count: number): Coin[] => {
+    const coinNames = ["Bitcoin", "Ethereum", "Solana", "Cardano", "XRP", "Polkadot", "Avalanche", "Chainlink", "Litecoin", "Dogecoin", "Shiba Inu", "Matic", "Uniswap", "Aave", "Cosmos"];
+
+    return Array.from({ length: count }, (_, index) => {
+        const name = coinNames[index % coinNames.length];
+        return {
+            name,
+            symbol: name.substring(0, 3).toUpperCase(),
+            price: +(Math.random() * 50000).toFixed(2),
+            change: +(Math.random() * 10 - 5).toFixed(2),
+            marketVolume: +(Math.random() * 1_000_000_000).toFixed(0),
+            marketCap: +(Math.random() * 500_000_000_000).toFixed(0),
+            circulatingSupply: +(Math.random() * 100_000_000).toFixed(0),
+            ath: +(Math.random() * 70000).toFixed(2),
+            atl: +(Math.random() * 100).toFixed(2),
+            favorite: false
+        };
+    });
+};
+
+export interface Coin {
+    name: string;
+    symbol: string;
+    price: number;
+    change: number;
 }
 
 interface CoinState {
-    favorites: Coin[]
+    favorites: Coin[],
+    allCoins: Coin[];
 }
 
 const initialState: CoinState = {
-    favorites: [
-        { name: "Bitcoin", symbol: "BTC", price: 450, change: 2.5 },
-        { name: "Ethereum", symbol: "ETH", price: 32, change: -1.2 },
-        { name: "Solana", symbol: "SOL", price: 12, change: 5.3 },
-        { name: "Cardano", symbol: "ADA", price: 1.2, change: -0.5 },
-        { name: "XRP", symbol: "XRP", price: 0.8, change: 3.1 },
-        { name: "Polkadot", symbol: "DOT", price: 5.2, change: -2.4 },
-    ],
+    favorites: [],
+    allCoins: generateRandomCoins(15),
 };
 
 const coinSlice = createSlice({
     name: "coin",
     initialState,
     reducers: {
-        addFavorite: (state, action: PayloadAction<Coin>) => {
-            if (!state.favorites.some((coin) => coin.symbol === action.payload.symbol)) {
-                state.favorites.push(action.payload);
+        toggleFavorite: (state, action: PayloadAction<string>) => {
+            const coinIndex = state.allCoins.findIndex(coin => coin.symbol === action.payload);
+            if (coinIndex !== -1) {
+                state.allCoins[coinIndex].favorite = !state.allCoins[coinIndex].favorite;
+
+                if (state.allCoins[coinIndex].favorite) {
+                    state.favorites.push(state.allCoins[coinIndex]);
+                } else {
+                    state.favorites = state.favorites.filter(coin => coin.symbol !== action.payload);
+                }
             }
-        },
-        removeFavorite: (state, action: PayloadAction<string>) => {
-            state.favorites = state.favorites.filter((coin) => coin.symbol !== action.payload);
-        },
+        }
     },
 });
 
-export const { addFavorite, removeFavorite } = coinSlice.actions;
+export const { toggleFavorite } = coinSlice.actions;
 export default coinSlice.reducer;

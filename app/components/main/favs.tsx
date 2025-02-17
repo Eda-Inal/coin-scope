@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-ico
 import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
-import { removeFavorite, Coin } from "@/app/features/coinSlice";
+import {  Coin,toggleFavorite } from "@/app/features/coinSlice";
 
 
 
@@ -32,7 +32,7 @@ const Favourites: React.FC = () => {
     const totalPages = Math.ceil(favoriteCoins.length / itemsPerPage);
     const paginatedCoins = favoriteCoins.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
     const handleRemoveFavorite = (coin: Coin) => {
-        dispatch(removeFavorite(coin.symbol))
+        dispatch(toggleFavorite(coin.symbol))
     }
 
     return (
