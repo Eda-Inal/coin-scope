@@ -5,6 +5,7 @@ import navbarReducer from "./features/navbarSlice"
 import authReducer from "./features/authSlice"
 import userReducer from "./features/userSlice"
 import notificationReducer  from "./features/notifactionSlice"
+import coinReducer from "./features/coinSlice"
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     navbar: navbarReducer,
     auth: authReducer,
     user: userReducer,
-    notification: notificationReducer
+    notification: notificationReducer,
+    coin : coinReducer
 
   },
 })

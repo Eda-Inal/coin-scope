@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
                     <Top />
                 </div>
                 <div className=" h-full  w-1/2 rounded-lg px-2 border-b dark:border-gray-700 shadow-lg border-t  ">
-                    <div className='h-[25px]'>Favs</div>
+                    <div className='h-[25px]'>Favoruites</div>
                     <Favourites />
                 </div>
             </div>
