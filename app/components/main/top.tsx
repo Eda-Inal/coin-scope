@@ -15,7 +15,7 @@ const Top: React.FC = () => {
     return (
         <>
 
-            <div className='flex flex-col gap-1   h-4/5 mt-2 w-full justify-between'>
+            <div className='flex flex-col gap-1   h-[205px] py-2  w-full justify-between'>
                 <div className="flex flex-row justify-between font-semibold text-sm">
                     <div className="flex-[0.5]   "></div>
 
@@ -30,7 +30,7 @@ const Top: React.FC = () => {
 
 
                 {top5Coins.map((coin, index) => (
-                    <div key={index} className="flex flex-row justify-between items-center rounded-lg text-sm">
+                    <div key={index} className="flex flex-row justify-between items-center rounded-lg text-sm  dark:bg-darkSecondary bg-lightSecondary p-1">
                         <div className="flex-[0.5]">  {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => dispatch(toggleFavorite(coin.symbol))} />}
 
                         </div>
