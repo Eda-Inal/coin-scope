@@ -4,10 +4,8 @@ import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-ico
 import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
-import {  Coin,toggleFavorite } from "@/app/features/coinSlice";
-
-
-
+import { Coin, toggleFavorite } from "@/app/features/coinSlice";
+import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 
 
 const Favourites: React.FC = () => {
@@ -49,26 +47,31 @@ const Favourites: React.FC = () => {
 
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm w-full mx-auto transition-transform duration-300 h-[170px]">
-                    {paginatedCoins.map((coin, index) => (
-                        <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)] dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
-                            <div className="flex flex-col w-1/2 h-full justify-between">
-                                <div className="flex flex-row items-center gap-2">
-                                    <div onClick={() => handleRemoveFavorite(coin)} className="cursor-pointer">
-                                        <FaStar className="text-yellow-400" size={16} />
+                    {paginatedCoins.map((coin, index) => {
+                        const isPositive = coin.change >= 0;
+                        return (
+                            <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)] dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
+                                <div className="flex flex-col w-1/2 h-full justify-between">
+                                    <div className="flex flex-row items-center gap-2">
+                                        <div onClick={() => handleRemoveFavorite(coin)} className="cursor-pointer">
+                                            <FaStar className="text-yellow-400" size={16} />
+                                        </div>
+                                        <div className="w-6 h-6 bg-red-200 rounded-full"></div>
+                                        <div className="font-semibold">{coin.name}</div>
                                     </div>
-                                    <div className="w-6 h-6 bg-red-200 rounded-full"></div>
-                                    <div className="font-semibold">{coin.name}</div>
+                                    <div className="flex items-center gap-2">
+                                        <span className="font-bold text-xs">${coin.price.toLocaleString()}</span>
+                                        <span className={`text-xs font-medium flex items-center ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                                            <span> {isPositive ? <FiArrowUp /> : <FiArrowDown />}</span>
+                                            {coin.change}%
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="font-bold text-xs">${coin.price.toLocaleString()}</span>
-                                    <span className={`text-xs font-medium ${coin.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                                        {coin.change}%
-                                    </span>
-                                </div>
+                                <div className="h-full w-1/2"></div>
                             </div>
-                            <div className="h-full w-1/2"></div>
-                        </div>
-                    ))}
+                        )
+                    }
+                    )}
                 </div>
             )}
 

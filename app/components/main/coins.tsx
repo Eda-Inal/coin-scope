@@ -3,6 +3,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 import { toggleFavorite } from '@/app/features/coinSlice';
+import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
     const allCoins = useSelector((state: RootState) => state.coin.allCoins);
@@ -25,30 +26,37 @@ const Coins: React.FC = () => {
             </div>
 
 
-            {allCoins.map((coin, index) => (
-                <div
-                    key={index}
-                    className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
-                >
-                    <div className="flex-[0.5]  text-lg">
-                        {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => dispatch(toggleFavorite(coin.symbol))} />}
-                    </div>
-                    <span className="flex-[0.5] text-left">{index + 1}</span>
-                    <span className="flex-[1.2] text-left">{coin.name}</span>
-                    <span className="flex-[1.2] text-left">{coin.price.toLocaleString()}</span>
-                    <span className="flex-[1.5] text-left">{coin.change}%</span>
-                    <span className="flex-[2] text-left md:block hidden">{coin.marketVolume.toLocaleString()}</span>
-                    <span className="flex-[2] text-left md:block hidden">{coin.marketCap.toLocaleString()}</span>
-                    <span className="flex-[2] text-left md:block hidden">{coin.circulatingSupply.toLocaleString()}</span>
-                    <span className="flex-[1] text-left md:block hidden">${coin.atl.toLocaleString()}</span>
-                    <span className="flex-[1] text-left md:block hidden">${coin.ath.toLocaleString()}</span>
+            {allCoins.map((coin, index) => {
+                const isPositive = coin.change >= 0;
+                return (
+                    <div
+                        key={index}
+                        className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
+                    >
+                        <div className="flex-[0.5]  text-lg">
+                            {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => dispatch(toggleFavorite(coin.symbol))} />}
+                        </div>
+                        <span className="flex-[0.5] text-left">{index + 1}</span>
+                        <span className="flex-[1.2] text-left">{coin.name}</span>
+                        <span className="flex-[1.2] text-left">{coin.price.toLocaleString()}</span>
+                        <span className={`flex-[1.5] flex items-center gap-1 ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                            {isPositive ? <FiArrowUp className="text-green-500" /> : <FiArrowDown className="text-red-500" />}
+                            {coin.change}%
+                        </span>
+                        <span className="flex-[2] text-left md:block hidden">{coin.marketVolume.toLocaleString()}</span>
+                        <span className="flex-[2] text-left md:block hidden">{coin.marketCap.toLocaleString()}</span>
+                        <span className="flex-[2] text-left md:block hidden">{coin.circulatingSupply.toLocaleString()}</span>
+                        <span className="flex-[1] text-left md:block hidden">${coin.atl.toLocaleString()}</span>
+                        <span className="flex-[1] text-left md:block hidden">${coin.ath.toLocaleString()}</span>
 
 
-                    <div className="flex-[2] text-left sm:block hidden">
-                        <div className="h-8 w-full  rounded-md"></div>
+                        <div className="flex-[2] text-left sm:block hidden">
+                            <div className="h-8 w-full  rounded-md"></div>
+                        </div>
                     </div>
-                </div>
-            ))}
+                )
+            }
+            )}
         </div>
     );
 }
