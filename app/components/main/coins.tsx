@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaStar,FaRegStar  } from "react-icons/fa";
-import { useSelector,useDispatch } from 'react-redux';
+import { FaStar, FaRegStar } from "react-icons/fa";
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 import { toggleFavorite } from '@/app/features/coinSlice';
 const Coins: React.FC = () => {
@@ -26,29 +26,29 @@ const Coins: React.FC = () => {
 
 
             {allCoins.map((coin, index) => (
-                    <div
-                        key={index}
-                        className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
-                    >
-                        <div  onClick={() => dispatch(toggleFavorite(coin.symbol))} className="flex-[0.5] cursor-pointer text-lg">
-                        {coin.favorite ? <FaStar className='text-yellow-500' /> : <FaRegStar /> }
-                          </div>
-                        <span className="flex-[0.5] text-left">{index + 1}</span>
-                        <span className="flex-[1.2] text-left">{coin.name}</span>
-                        <span className="flex-[1.2] text-left">{coin.price.toLocaleString()}</span>
-                        <span className="flex-[1.5] text-left">{coin.change}%</span>
-                        <span className="flex-[2] text-left md:block hidden">{coin.marketVolume.toLocaleString()}</span>
-                        <span className="flex-[2] text-left md:block hidden">{coin.marketCap.toLocaleString()}</span>
-                        <span className="flex-[2] text-left md:block hidden">{coin.circulatingSupply.toLocaleString()}</span>
-                        <span className="flex-[1] text-left md:block hidden">${coin.atl.toLocaleString()}</span>
-                        <span className="flex-[1] text-left md:block hidden">${coin.ath.toLocaleString()}</span>
-
-
-                        <div className="flex-[2] text-left sm:block hidden">
-                            <div className="h-8 w-full  rounded-md"></div>
-                        </div>
+                <div
+                    key={index}
+                    className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
+                >
+                    <div className="flex-[0.5]  text-lg">
+                        {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => dispatch(toggleFavorite(coin.symbol))} />}
                     </div>
-                ))}
+                    <span className="flex-[0.5] text-left">{index + 1}</span>
+                    <span className="flex-[1.2] text-left">{coin.name}</span>
+                    <span className="flex-[1.2] text-left">{coin.price.toLocaleString()}</span>
+                    <span className="flex-[1.5] text-left">{coin.change}%</span>
+                    <span className="flex-[2] text-left md:block hidden">{coin.marketVolume.toLocaleString()}</span>
+                    <span className="flex-[2] text-left md:block hidden">{coin.marketCap.toLocaleString()}</span>
+                    <span className="flex-[2] text-left md:block hidden">{coin.circulatingSupply.toLocaleString()}</span>
+                    <span className="flex-[1] text-left md:block hidden">${coin.atl.toLocaleString()}</span>
+                    <span className="flex-[1] text-left md:block hidden">${coin.ath.toLocaleString()}</span>
+
+
+                    <div className="flex-[2] text-left sm:block hidden">
+                        <div className="h-8 w-full  rounded-md"></div>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
