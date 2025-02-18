@@ -13,7 +13,6 @@ const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
     const favoriteCoins = useSelector((state: RootState) => state.coin.favorites);
-    console.log(favoriteCoins);
     const dispatch = useDispatch()
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);

@@ -45,7 +45,7 @@ const Notification: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-5 left-1/2 transform -translate-x-1/2 w-3/4 sm:w-1/2 lg:w-1/4 md:w-1/2 min-h-16 px-4 py-2 rounded-md shadow-lg 
+      className={`fixed top-5 left-1/2 transform -translate-x-1/2 w-3/4 sm:w-1/2 lg:w-1/4 md:w-1/2 min-h-16 px-4 py-2 rounded-md shadow-lg  z-50
         bg-lightSecondary dark:bg-darkSecondary flex items-center space-x-4 ${borderColor} border-2`}
     >
     

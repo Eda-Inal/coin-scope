@@ -14,7 +14,6 @@ const SignUp: React.FC = () => {
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
     const isMail = useSelector((state: RootState) => state.auth.signUpMail);
-    console.log(isMail);
     const dispatch = useDispatch()
     const handleMail = () => {
         dispatch(setSignUpMail(true));
