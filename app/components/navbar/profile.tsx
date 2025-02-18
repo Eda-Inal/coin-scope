@@ -38,11 +38,11 @@ const Profile: React.FC = () => {
     return (
         <div className="relative ">
    
-                    <li onClick={handleSignOut} className="bg-primary hover:bg-sky-600 text-white text-center px-4 py-1 w-28 rounded-md font-semibold cursor-pointer"
+                    <div onClick={handleSignOut} className="bg-primary hover:bg-sky-600 text-white text-center px-4 py-1 w-28 rounded-md font-semibold cursor-pointer"
 
                     >
                       {t.signout}
-                    </li>
+                    </div>
 
           
         </div>

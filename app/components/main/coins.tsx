@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
-import { toggleFavorite } from '@/app/features/coinSlice';
+import { toggleFavorite,setRandomPrices } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 
@@ -11,6 +11,9 @@ const Coins: React.FC = () => {
     const allCoins = useSelector((state: RootState) => state.coin.allCoins);
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
+    useEffect(() => {
+        dispatch(setRandomPrices()); 
+    }, [dispatch]);
     return (
         <>
             <div className='flex flex-col gap-2 h-full w-full mt-2 justify-between  '>

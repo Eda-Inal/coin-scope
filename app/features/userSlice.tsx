@@ -14,8 +14,10 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  user: null,
-  isAuthenticated: false,
+  user: typeof window !== "undefined" && localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user")!)
+    : null,
+  isAuthenticated: typeof window !== "undefined" && localStorage.getItem("user") ? true : false,
   warning: null
 };
 
@@ -27,14 +29,17 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
       state.warning = null;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     logOut: (state) => {
       state.user = null;
       state.isAuthenticated = false;
+      localStorage.removeItem("user"); 
     },
     setWarning: (state, action: PayloadAction<string | null>) => {
       state.warning = action.payload;
     },
+    
   },
 });
 

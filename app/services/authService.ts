@@ -9,7 +9,14 @@ export const signInWithGoogle = async () => {
 
   try {
     const result = await signInWithPopup(auth, provider);
-    return result.user;
+    const user = result.user
+    localStorage.setItem("user", JSON.stringify({
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    }));
+    return user;
   } catch (error) {
     console.error("Google authentication fail:", error);
     throw error;
@@ -18,7 +25,14 @@ export const signInWithGoogle = async () => {
 export const signUpWithEmail = async (email: string, password: string) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
+    const user = userCredential.user;
+    localStorage.setItem("user", JSON.stringify({
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    }));
+    return  user;
   } catch (error) {
     console.error("Sign-up failed:", error);
     throw error;
