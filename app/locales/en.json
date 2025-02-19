@@ -38,7 +38,6 @@
   "coinChart": "Chart (7 days)",
   "emptyFavorite": "Your tracked list is empty. Start adding your favorite coins and track them easily!",
   "tracked": "Tracked",
-  "top5": "Top 5 by Market Cap"
-  
-
+  "top5": "Top 5 by Market Cap",
+  "favLoginError": "Error, you must log in first to track your coins"
 }

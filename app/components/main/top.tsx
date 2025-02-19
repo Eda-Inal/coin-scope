@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Coin, toggleFavorite } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
+import { showNotification } from '@/app/features/notifactionSlice';
 
 
 const Top: React.FC = () => {
@@ -12,11 +13,27 @@ const Top: React.FC = () => {
     const allCoins = useSelector((state: any) => state.coin.allCoins);
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
+    const user = useSelector((state: RootState) => state.user.user)
 
+    const handleAddFavorite = (coin: Coin) => {
 
+        if (!user) {
+            dispatch(
+                showNotification({
+                    message: t.favLoginError,
+                    type: 'error',
+                })
+            );
+
+        } else {
+            dispatch(toggleFavorite(coin.symbol))
+
+        }
+    }
 
     const sortedCoins = [...allCoins].sort((a: Coin, b: Coin) => b.marketCap - a.marketCap);
     const top5Coins = sortedCoins.slice(0, 5);
+
     return (
         <>
 
@@ -38,7 +55,7 @@ const Top: React.FC = () => {
                     const isPositive = coin.change >= 0;
                     return (
                         <div key={index} className="flex flex-row justify-between items-center  text-sm border-t dark:border-gray-700 border-gray-200 p-1">
-                            <div className="flex-[0.5]">  {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => dispatch(toggleFavorite(coin.symbol))} />}
+                            <div className="flex-[0.5]">  {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => (handleAddFavorite(coin))} />}
 
                             </div>
 

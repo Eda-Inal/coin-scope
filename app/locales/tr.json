@@ -38,9 +38,6 @@
   "coinChart": "Grafik (7 Gün)",
   "emptyFavorite": "Takip edilenler listeniz boş. Favori coin'lerinizi eklemeye başlayın ve kolayca takip edin!",
   "tracked": "Takip Edilenler",
-  "top5": "İlk 5 Piyasa Değeri"
-
-
-
-  
+  "top5": "İlk 5 Piyasa Değeri",
+  "favLoginError": "Hata, coinlerini takip etmek için önce giriş yapmalısın."
 }
