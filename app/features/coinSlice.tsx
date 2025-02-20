@@ -12,8 +12,8 @@ export interface Coin {
     favorite: boolean
 }
 const coinNames = [
-    "Bitcoin", "Ethereum", "Solana", "Cardano", "XRP", 
-    "Polkadot", "Avalanche", "Chainlink", "Litecoin", "Dogecoin", 
+    "Bitcoin", "Ethereum", "Solana", "Cardano", "XRP",
+    "Polkadot", "Avalanche", "Chainlink", "Litecoin", "Dogecoin",
     "Shiba Inu", "Matic", "Uniswap", "Aave", "Cosmos"
 ];
 const generateRandomCoins = (count: number): Coin[] => {
@@ -78,9 +78,15 @@ const coinSlice = createSlice({
                 ath: +(Math.random() * 70000).toFixed(2),
                 atl: +(Math.random() * 100).toFixed(2),
             }));
+        },
+        setLogoutFavorites: (state) => {
+            state.favorites = []
+            state.allCoins = state.allCoins.map((coin) =>
+                coin.favorite ? { ...coin, favorite: false } : coin
+            );
         }
     },
 });
 
-export const { toggleFavorite,setRandomPrices } = coinSlice.actions;
+export const { toggleFavorite, setRandomPrices, setLogoutFavorites } = coinSlice.actions;
 export default coinSlice.reducer;
