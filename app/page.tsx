@@ -7,6 +7,7 @@ import { showNotification } from "./features/notifactionSlice";
 import Notification from "./components/notification";
 import Sidebar from "./components/main/sidebar";
 import Coins from "./components/main/coins";
+import CoinModal from "./components/coinModal";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
@@ -40,7 +41,7 @@ const Home: React.FC = () => {
 
 
 
-
+<CoinModal/>
 
 
 

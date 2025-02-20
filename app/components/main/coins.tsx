@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
-import { toggleFavorite, setRandomPrices, Coin } from '@/app/features/coinSlice';
+import { toggleFavorite, setRandomPrices, Coin, setSelectedCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { showNotification } from '@/app/features/notifactionSlice';
@@ -13,6 +13,10 @@ const Coins: React.FC = () => {
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
     const user = useSelector((state: RootState) => state.user.user)
+    const handleOpenModal = (coin: Coin) => {
+        dispatch(setSelectedCoin(coin));
+    };
+
     useEffect(() => {
         dispatch(setRandomPrices());
     }, [dispatch]);
@@ -41,7 +45,7 @@ const Coins: React.FC = () => {
                 <div className="flex flex-row justify-between font-semibold p-2 border-b dark:border-b-gray-700">
                     <div className="flex-[0.3]">⭐</div>
                     <span className="flex-[0.3] text-left">#</span>
-                    <span className="w-8 h-8 rounded-full mr-4  sm:block hiddentext-left"></span>
+                    <span className="w-8 h-8 rounded-full mr-4  sm:block hidden text-left"></span>
                     <span className="flex-[1.2] text-left ">{t.coin}</span>
                     <span className="flex-[1.2] text-left">{t.price}</span>
                     <span className="flex-[1.2] text-left">{t.coin24}%</span>
@@ -67,9 +71,9 @@ const Coins: React.FC = () => {
                             </div>
                             <span className="flex-[0.3] text-left">{index + 1}</span>
                             <span className="w-8 h-8  rounded-full mr-4 bg-pink-500 text-left sm:block hidden"></span>
-                            <span className="flex-[1.2] text-left  ">{coin.name}</span>
-                            <span className="flex-[1.2] text-left">{coin.price.toLocaleString()}</span>
-                            <span className={`flex-[1.2] flex items-center gap-1 ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                            <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] cursor-pointer  text-left  ">{coin.name}</span>
+                            <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">{coin.price.toLocaleString()}</span>
+                            <span onClick={() => handleOpenModal(coin)} className={`flex-[1.2] flex cursor-pointer items-center gap-1 ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                                 {isPositive ? <FiArrowUp className="text-green-500" /> : <FiArrowDown className="text-red-500" />}
                                 {coin.change}%
                             </span>

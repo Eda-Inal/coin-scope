@@ -39,6 +39,7 @@ const ThemeLayout = ({ children }: { children: React.ReactNode }) => {
       <body className={`${roboto.variable} antialiased`}>
         <Navbar />
         {children}
+        <div id="modal-root"></div>
       </body>
     </html>
   );

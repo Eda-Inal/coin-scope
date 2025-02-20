@@ -44,11 +44,15 @@ export interface Coin {
 interface CoinState {
     favorites: Coin[],
     allCoins: Coin[];
+    selectedCoin: null | Coin
+    isModalOpen: boolean,
 }
 
 const initialState: CoinState = {
     favorites: [],
     allCoins: generateRandomCoins(15),
+    selectedCoin: null,
+    isModalOpen: false,
 };
 
 const coinSlice = createSlice({
@@ -84,9 +88,13 @@ const coinSlice = createSlice({
             state.allCoins = state.allCoins.map((coin) =>
                 coin.favorite ? { ...coin, favorite: false } : coin
             );
-        }
+        },
+        setSelectedCoin: (state, action: PayloadAction<Coin | null>) => {
+            state.selectedCoin = action.payload;
+            state.isModalOpen = action.payload !== null;
+        },
     },
 });
 
-export const { toggleFavorite, setRandomPrices, setLogoutFavorites } = coinSlice.actions;
+export const { toggleFavorite, setRandomPrices, setLogoutFavorites,setSelectedCoin } = coinSlice.actions;
 export default coinSlice.reducer;
