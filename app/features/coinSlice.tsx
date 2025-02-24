@@ -21,8 +21,8 @@ const generateRandomCoins = (count: number): Coin[] => {
         return {
             name,
             symbol: name.substring(0, 3).toUpperCase(),
-            price: 0,  // 🚨 SSR'de sabit değer koy
-            change: 0, // 🚨 SSR'de sabit değer koy
+            price: 0,  
+            change: 0, 
             marketVolume: 0,
             marketCap: 0,
             circulatingSupply: 0,
@@ -43,12 +43,14 @@ interface CoinState {
     allCoins: Coin[];
     selectedCoin: null | Coin
     isModalOpen: boolean,
+    favoriteCoins: string[]; 
 }
 
 const initialState: CoinState = {
     allCoins: generateRandomCoins(15),
     selectedCoin: null,
     isModalOpen: false,
+    favoriteCoins : []
 };
 
 const coinSlice = createSlice({
@@ -73,8 +75,19 @@ const coinSlice = createSlice({
             state.selectedCoin = action.payload;
             state.isModalOpen = action.payload !== null;
         },
+        setFavorites: (state, action: PayloadAction<string[]>) => {
+            state.favoriteCoins = Array.from(new Set([...state.favoriteCoins, ...action.payload]));
+        },
+        addFavoriteCoin: (state, action: PayloadAction<string>) => {
+            if (!state.favoriteCoins.includes(action.payload)) {
+                state.favoriteCoins.push(action.payload);
+            }
+        },
+        removeFavoriteCoin: (state, action: PayloadAction<string>) => {
+            state.favoriteCoins = state.favoriteCoins.filter(coin => coin !== action.payload);
+        },
     },
 });
 
-export const {  setRandomPrices, setSelectedCoin } = coinSlice.actions;
+export const {  setRandomPrices, setSelectedCoin,setFavorites,removeFavoriteCoin,addFavoriteCoin } = coinSlice.actions;
 export default coinSlice.reducer;

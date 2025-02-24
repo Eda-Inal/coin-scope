@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
-import { setRandomPrices, Coin, setSelectedCoin } from '@/app/features/coinSlice';
+import { setRandomPrices, Coin, setSelectedCoin, setFavorites, removeFavoriteCoin, addFavoriteCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation';
 import { db } from '@/firebaseConfig';
@@ -17,9 +17,10 @@ const Coins: React.FC = () => {
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
     const [user, setUser] = useState<any>(null);
+    const favoriteCoins = useSelector((state: RootState) => state.coin.favoriteCoins);
 
 
-    const [favoriteCoins, setFavoriteCoins] = useState<string[]>([]);
+
     console.log("fav", favoriteCoins);
 
 
@@ -34,7 +35,7 @@ const Coins: React.FC = () => {
                 if (currentUser.email) fetchFavoriteCoins(currentUser.email);
             } else {
                 setUser(null);
-                setFavoriteCoins([]);
+                dispatch(setFavorites([]));
             }
         });
 
@@ -47,22 +48,18 @@ const Coins: React.FC = () => {
             const favoritesRef = collection(db, "users", userEmail, "favorites");
             const querySnapshot = await getDocs(favoritesRef);
 
-
             const favoriteCoinsList = querySnapshot.docs.map(doc => doc.id);
 
-            setFavoriteCoins(prevFavorites => {
-                const updatedFavorites = [...prevFavorites, ...favoriteCoinsList];
-                return Array.from(new Set(updatedFavorites));
-            });
-            return favoriteCoinsList;
+
+            dispatch(setFavorites(favoriteCoinsList));
         } catch (error) {
             console.error("Favori coinleri alırken hata oluştu:", error);
         }
     };
 
-    const addFavoriteCoin = async (coin: Coin) => {
-        if (!user || !user.email) return;
 
+    const handleAddFavorite = async (coin: Coin) => {
+        if (!user || !user.email) return;
         try {
             const coinRef = doc(db, "users", user.email, "favorites", coin.name);
             await setDoc(coinRef, {
@@ -71,23 +68,26 @@ const Coins: React.FC = () => {
                 name: coin.name,
             });
 
-            setFavoriteCoins(prevFavorites => [...prevFavorites, coin.name]);
+            dispatch(addFavoriteCoin(coin.name));
         } catch (error) {
             console.error("Favori eklerken hata oluştu:", error);
         }
     };
 
-    const removeFavoriteCoin = async (coinName: string) => {
+    const handleRemoveFavorite = async (coinName: string) => {
         if (!user || !user.email) return;
         try {
             const coinRef = doc(db, "users", user.email, "favorites", coinName);
             await deleteDoc(coinRef);
 
-            setFavoriteCoins(prevFavorites => prevFavorites.filter(fav => fav !== coinName));
+            dispatch(removeFavoriteCoin(coinName));
         } catch (error) {
             console.error("Favori çıkarırken hata oluştu:", error);
         }
     };
+
+
+
     const handleOpenModal = (coin: Coin) => {
         dispatch(setSelectedCoin(coin));
     };
@@ -122,7 +122,7 @@ const Coins: React.FC = () => {
                             {isFavorite ? (
                                 <FaStar
                                     className="text-yellow-500"
-                                    onClick={() => removeFavoriteCoin(coin.name)}
+                                    onClick={() => handleRemoveFavorite(coin.name)}
                                 />
                             ) : (
                                 <FaRegStar
@@ -132,7 +132,7 @@ const Coins: React.FC = () => {
                                             alert("Lütfen giriş yapın!");
                                             return;
                                         }
-                                        addFavoriteCoin(coin);
+                                        handleAddFavorite(coin);
                                     }}
                                 />
                             )}
