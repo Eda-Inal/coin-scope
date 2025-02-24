@@ -9,7 +9,6 @@ export interface Coin {
     circulatingSupply: number;
     ath: number;
     atl: number;
-    favorite: boolean
 }
 const coinNames = [
     "Bitcoin", "Ethereum", "Solana", "Cardano", "XRP",
@@ -29,7 +28,6 @@ const generateRandomCoins = (count: number): Coin[] => {
             circulatingSupply: 0,
             ath: 0,
             atl: 0,
-            favorite: false
         };
     });
 };
@@ -42,14 +40,12 @@ export interface Coin {
 }
 
 interface CoinState {
-    favorites: Coin[],
     allCoins: Coin[];
     selectedCoin: null | Coin
     isModalOpen: boolean,
 }
 
 const initialState: CoinState = {
-    favorites: [],
     allCoins: generateRandomCoins(15),
     selectedCoin: null,
     isModalOpen: false,
@@ -59,18 +55,7 @@ const coinSlice = createSlice({
     name: "coin",
     initialState,
     reducers: {
-        toggleFavorite: (state, action: PayloadAction<string>) => {
-            const coinIndex = state.allCoins.findIndex(coin => coin.symbol === action.payload);
-            if (coinIndex !== -1) {
-                state.allCoins[coinIndex].favorite = !state.allCoins[coinIndex].favorite;
-
-                if (state.allCoins[coinIndex].favorite) {
-                    state.favorites.push(state.allCoins[coinIndex]);
-                } else {
-                    state.favorites = state.favorites.filter(coin => coin.symbol !== action.payload);
-                }
-            }
-        },
+     
         setRandomPrices: (state) => {
             state.allCoins = state.allCoins.map(coin => ({
                 ...coin,
@@ -83,12 +68,7 @@ const coinSlice = createSlice({
                 atl: +(Math.random() * 100).toFixed(2),
             }));
         },
-        setLogoutFavorites: (state) => {
-            state.favorites = []
-            state.allCoins = state.allCoins.map((coin) =>
-                coin.favorite ? { ...coin, favorite: false } : coin
-            );
-        },
+     
         setSelectedCoin: (state, action: PayloadAction<Coin | null>) => {
             state.selectedCoin = action.payload;
             state.isModalOpen = action.payload !== null;
@@ -96,5 +76,5 @@ const coinSlice = createSlice({
     },
 });
 
-export const { toggleFavorite, setRandomPrices, setLogoutFavorites,setSelectedCoin } = coinSlice.actions;
+export const {  setRandomPrices, setSelectedCoin } = coinSlice.actions;
 export default coinSlice.reducer;

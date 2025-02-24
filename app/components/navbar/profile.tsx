@@ -8,7 +8,6 @@ import { showNotification } from '../../features/notifactionSlice';
 import { RootState } from '../../store'
 import { getTranslation } from '../../utils/getTranslation'
 import { useSelector } from 'react-redux'
-import { setLogoutFavorites } from '@/app/features/coinSlice';
 
 
 const Profile: React.FC = () => {
@@ -26,7 +25,6 @@ const Profile: React.FC = () => {
                     type: 'success',
                 })
             );
-            dispatch(setLogoutFavorites());
         } catch (error) {
             console.error("Sign-out failed:", error);
             dispatch(

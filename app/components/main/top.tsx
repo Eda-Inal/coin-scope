@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { RootState } from '@/app/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { Coin, toggleFavorite,setSelectedCoin } from '@/app/features/coinSlice';
+import { Coin,setSelectedCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { showNotification } from '@/app/features/notifactionSlice';
@@ -17,21 +17,7 @@ const Top: React.FC = () => {
   const handleOpenModal = (coin: Coin) => {
         dispatch(setSelectedCoin(coin));
     };
-    const handleAddFavorite = (coin: Coin) => {
 
-        if (!user) {
-            dispatch(
-                showNotification({
-                    message: t.favLoginError,
-                    type: 'error',
-                })
-            );
-
-        } else {
-            dispatch(toggleFavorite(coin.symbol))
-
-        }
-    }
 
     const sortedCoins = [...allCoins].sort((a: Coin, b: Coin) => b.marketCap - a.marketCap);
     const top5Coins = sortedCoins.slice(0, 5);
@@ -57,8 +43,8 @@ const Top: React.FC = () => {
                     const isPositive = coin.change >= 0;
                     return (
                         <div key={index} className="flex flex-row justify-between items-center  text-sm border-t dark:border-gray-700 border-gray-200 p-1">
-                            <div className="flex-[0.5]">  {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => (handleAddFavorite(coin))} />}
-
+                            <div className="flex-[0.5]"> 
+                            <FaRegStar className='cursor-pointer' />
                             </div>
 
                             <span className="flex-[0.5] text-left">{index + 1}</span>

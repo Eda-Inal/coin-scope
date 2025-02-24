@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-ico
 import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
-import { Coin, toggleFavorite } from "@/app/features/coinSlice";
+import { Coin } from "@/app/features/coinSlice";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 
@@ -12,10 +12,15 @@ import { getTranslation } from '@/app/utils/getTranslation'
 const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
-    const favoriteCoins = useSelector((state: RootState) => state.coin.favorites);
     const dispatch = useDispatch()
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
+    const favoriteCoins = [
+        { name: 'Bitcoin', price: 45000, change: 1.2 },
+        { name: 'Ethereum', price: 3000, change: -0.5 },
+        { name: 'Cardano', price: 1.2, change: 2.5 },
+        { name: 'Litecoin', price: 180, change: -1.1 }
+    ]; 
 
     useEffect(() => {
         const updateItemsPerPage = () => {
@@ -31,9 +36,7 @@ const Favourites: React.FC = () => {
 
     const totalPages = Math.ceil(favoriteCoins.length / itemsPerPage);
     const paginatedCoins = favoriteCoins.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
-    const handleRemoveFavorite = (coin: Coin) => {
-        dispatch(toggleFavorite(coin.symbol))
-    }
+ 
 
     return (
         <div className=" flex flex-col mt-1 relative">
@@ -55,7 +58,7 @@ const Favourites: React.FC = () => {
                             <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)] dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
                                 <div className="flex flex-col w-1/2 h-full justify-between">
                                     <div className="flex flex-row items-center gap-2">
-                                        <div onClick={() => handleRemoveFavorite(coin)} className="cursor-pointer">
+                                        <div  className="cursor-pointer">
                                             <FaStar className="text-yellow-400" size={16} />
                                         </div>
                                         <div className="w-6 h-6 bg-red-200 rounded-full"></div>

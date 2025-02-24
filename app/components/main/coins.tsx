@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
-import { toggleFavorite, setRandomPrices, Coin, setSelectedCoin } from '@/app/features/coinSlice';
+import {setRandomPrices, Coin, setSelectedCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { showNotification } from '@/app/features/notifactionSlice';
@@ -20,23 +20,7 @@ const Coins: React.FC = () => {
     useEffect(() => {
         dispatch(setRandomPrices());
     }, [dispatch]);
-    const handleAddFavorite = (coin: Coin) => {
-
-        if (!user) {
-            console.log("kulllanıcı yok o yüzden favorilere eklenmiyo");
-            dispatch(
-                showNotification({
-                    message: t.favLoginError,
-                    type: 'error',
-                })
-            );
-
-        } else {
-            dispatch(toggleFavorite(coin.symbol))
-            console.log("kulllanıcı var favorilere ekleme tamam");
-
-        }
-    }
+  
     return (
         <>
             <div className='flex flex-col gap-2 h-full w-full mt-2 justify-between  '>
@@ -67,7 +51,7 @@ const Coins: React.FC = () => {
                             className="flex flex-row justify-between items-center rounded-full text-sm py-3 bg-lightSecondary dark:bg-darkSecondary px-2 mt-1 "
                         >
                             <div className="flex-[0.3]  text-lg">
-                                {coin.favorite ? <FaStar onClick={() => dispatch(toggleFavorite(coin.symbol))} className='text-yellow-500 cursor-pointer' /> : <FaRegStar className='cursor-pointer' onClick={() => handleAddFavorite(coin)} />}
+                            <span><FaRegStar className='cursor-pointer'/></span>
                             </div>
                             <span className="flex-[0.3] text-left">{index + 1}</span>
                             <span className="w-8 h-8  rounded-full mr-4 bg-pink-500 text-left sm:block hidden"></span>
