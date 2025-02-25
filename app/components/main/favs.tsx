@@ -2,28 +2,25 @@
 import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { Coin } from "@/app/features/coinSlice";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
-
+import { useUserFavorites } from "@/app/hooks/useUserFavorites";
 
 const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(4);
-    const dispatch = useDispatch()
     const locale = useSelector((state: RootState) => state.language.locale);
-    const favoriteCoins = useSelector((state: RootState) =>
-        state.coin.favoriteCoins
-            .map(coinName =>
-                state.coin.allCoins.find(coin => coin.name === coinName)
-            )
-            .filter((coin): coin is Coin => coin !== undefined)
-    );
+    const allCoins = useSelector((state: RootState) => state.coin.allCoins);
+    const { favoriteCoins, removeFavoriteCoin } = useUserFavorites();
 
+    // Favori coin'lere ait tüm bilgileri almak için
+    const favoriteCoinsWithDetails = favoriteCoins
+        .map(coinName => allCoins.find(coin => coin.name === coinName))
+        .filter((coin): coin is Coin => coin !== undefined);
     const t = getTranslation(locale);
-
 
     useEffect(() => {
         const updateItemsPerPage = () => {
@@ -37,16 +34,15 @@ const Favourites: React.FC = () => {
         return () => window.removeEventListener("resize", updateItemsPerPage);
     }, []);
 
-    const totalPages = Math.ceil(favoriteCoins.length / itemsPerPage);
-    const paginatedCoins = favoriteCoins.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
-
+    const totalPages = Math.ceil(favoriteCoinsWithDetails.length / itemsPerPage);
+    const paginatedCoins = favoriteCoinsWithDetails.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
     return (
-        <div className=" flex flex-col mt-1 relative">
+        <div className="flex flex-col mt-1 relative">
 
-            {favoriteCoins.length === 0 ? (
+            {favoriteCoinsWithDetails.length === 0 ? (
                 <div className="h-[170px]">
-                    <div className=" text-gray-500 dark:text-gray-400 text-sm mt-2 flex jus items-center gap-2 ">
+                    <div className="text-gray-500 dark:text-gray-400 text-sm mt-2 flex jus items-center gap-2">
                         <FaStar className="text-yellow-500" />
                         <span>{t.emptyFavorite}</span>
                         <FaStar className="text-yellow-500" />
@@ -62,7 +58,11 @@ const Favourites: React.FC = () => {
                                 <div className="flex flex-col w-1/2 h-full justify-between">
                                     <div className="flex flex-row items-center gap-2">
                                         <div className="cursor-pointer">
-                                            <FaStar className="text-yellow-400" size={16} />
+                                            <FaStar
+                                                className="text-yellow-400"
+                                                size={16}
+                                                onClick={() => removeFavoriteCoin(coin.name)}
+                                            />
                                         </div>
                                         <div className="w-6 h-6 bg-red-200 rounded-full"></div>
                                         <div className="font-semibold">{coin.name}</div>
@@ -78,14 +78,12 @@ const Favourites: React.FC = () => {
                                 <div className="h-full w-1/2"></div>
                             </div>
                         )
-                    }
-                    )}
+                    })}
                 </div>
             )}
 
-
-            {favoriteCoins.length > 0 ? (
-                <div className="flex w-full justify-between mt-2 h-[30px] ">
+            {favoriteCoinsWithDetails.length > 0 ? (
+                <div className="flex w-full justify-between mt-2 h-[30px]">
                     <button
                         className={`cursor-pointer hover:text-primary ${currentPage === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
                         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
@@ -101,10 +99,7 @@ const Favourites: React.FC = () => {
                         <MdKeyboardDoubleArrowRight size={20} />
                     </button>
                 </div>
-            ) : <div className="mt-2 h-[30px]"></div>
-
-            }
-
+            ) : <div className="mt-2 h-[30px]"></div>}
         </div>
     );
 };
