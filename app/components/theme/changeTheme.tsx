@@ -6,18 +6,22 @@ import { toggleTheme } from "../../features/theme";
 const ChangeTheme: React.FC = () => {
     const dispatch = useDispatch();
     const [localTheme, setLocalTheme] = useState<"light" | "dark">(() => {
-        return (localStorage.getItem("theme") as "light" | "dark") || "dark";
+        if (typeof window !== "undefined") {
+            return (localStorage.getItem("theme") as "light" | "dark") || "dark";
+        }
+        return "dark"; 
     });
 
-
     useEffect(() => {
-        document.documentElement.classList.toggle("dark", localTheme === "dark");
+        if (typeof window !== "undefined") {
+            document.documentElement.classList.toggle("dark", localTheme === "dark");
+            localStorage.setItem("theme", localTheme);
+        }
     }, [localTheme]);
 
     const handleThemeChange = () => {
         const newTheme = localTheme === "light" ? "dark" : "light";
         setLocalTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
         dispatch(toggleTheme());
     };
 
