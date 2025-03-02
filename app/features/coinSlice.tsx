@@ -1,77 +1,68 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-export interface Coin {
-    name: string;
-    symbol: string;
-    price: number;
-    change: number;
-    marketVolume: number;
-    marketCap: number;
-    circulatingSupply: number;
-    ath: number;
-    atl: number;
-}
-const coinNames = [
-    "Bitcoin", "Ethereum", "Solana", "Cardano", "XRP",
-    "Polkadot", "Avalanche", "Chainlink", "Litecoin", "Dogecoin",
-    "Shiba Inu", "Matic", "Uniswap", "Aave", "Cosmos"
-];
-const generateRandomCoins = (count: number): Coin[] => {
-    return Array.from({ length: count }, (_, index) => {
-        const name = coinNames[index % coinNames.length];
-        return {
-            name,
-            symbol: name.substring(0, 3).toUpperCase(),
-            price: 0,  
-            change: 0, 
-            marketVolume: 0,
-            marketCap: 0,
-            circulatingSupply: 0,
-            ath: 0,
-            atl: 0,
-        };
-    });
-};
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export interface Coin {
-    name: string;
+export interface CryptoData {
+    id: string;
     symbol: string;
-    price: number;
-    change: number;
+    name: string;
+    image: string;
+    current_price: number;
+    market_cap: number;
+    market_cap_rank: number;
+    fully_diluted_valuation: number;
+    total_volume: number;
+    high_24h: number;
+    low_24h: number;
+    price_change_24h: number;
+    price_change_percentage_24h: number;
+    market_cap_change_24h: number;
+    market_cap_change_percentage_24h: number;
+    circulating_supply: number;
+    total_supply: number;
+    max_supply: number;
+    ath: number;
+    ath_change_percentage: number;
+    ath_date: string;
+    atl: number;
+    atl_change_percentage: number;
+    atl_date: string;
+    roi: null;
+    last_updated: string;
 }
 
 interface CoinState {
-    allCoins: Coin[];
-    selectedCoin: null | Coin
-    isModalOpen: boolean,
-    favoriteCoins: string[]; 
+    allCoins: CryptoData[];
+    selectedCoin: null | CryptoData;
+    isModalOpen: boolean;
+    favoriteCoins: string[];
+    status: "idle" | "loading" | "succeeded" | "failed";
+    error: string | null;
 }
 
+export const fetchCryptoData = createAsyncThunk<CryptoData[]>(
+    "coin/fetchCryptoData",
+    async () => {
+        const response = await axios.get(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd"
+        );
+        return response.data; 
+    }
+);
+
 const initialState: CoinState = {
-    allCoins: generateRandomCoins(15),
+    allCoins: [], 
     selectedCoin: null,
     isModalOpen: false,
-    favoriteCoins : []
+    favoriteCoins: [],
+    status: "idle",
+    error: null,
 };
 
 const coinSlice = createSlice({
     name: "coin",
     initialState,
     reducers: {
-     
-        setRandomPrices: (state) => {
-            state.allCoins = state.allCoins.map(coin => ({
-                ...coin,
-                price: +(Math.random() * 50000).toFixed(2),
-                change: +(Math.random() * 10 - 5).toFixed(2),
-                marketVolume: +(Math.random() * 1_000_000_000).toFixed(0),
-                marketCap: +(Math.random() * 500_000_000_000).toFixed(0),
-                circulatingSupply: +(Math.random() * 100_000_000).toFixed(0),
-                ath: +(Math.random() * 70000).toFixed(2),
-                atl: +(Math.random() * 100).toFixed(2),
-            }));
-        },
-     
-        setSelectedCoin: (state, action: PayloadAction<Coin | null>) => {
+        setSelectedCoin: (state, action: PayloadAction<CryptoData | null>) => {
             state.selectedCoin = action.payload;
             state.isModalOpen = action.payload !== null;
         },
@@ -87,7 +78,27 @@ const coinSlice = createSlice({
             state.favoriteCoins = state.favoriteCoins.filter(coin => coin !== action.payload);
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCryptoData.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchCryptoData.fulfilled, (state, action: PayloadAction<CryptoData[]>) => {
+                state.status = "succeeded";
+                state.allCoins = action.payload;
+            })
+            .addCase(fetchCryptoData.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message || "Unknown error";
+            });
+    },
 });
 
-export const {  setRandomPrices, setSelectedCoin,setFavorites,removeFavoriteCoin,addFavoriteCoin } = coinSlice.actions;
+export const {
+    setSelectedCoin,
+    setFavorites,
+    addFavoriteCoin,
+    removeFavoriteCoin,
+} = coinSlice.actions;
+
 export default coinSlice.reducer;

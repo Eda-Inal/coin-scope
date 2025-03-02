@@ -54,13 +54,13 @@ const CoinModal: React.FC = () => {
 
                     <div className="flex flex-col gap-2 text-right font-semibold">
                         <span>{selectedCoin.name}</span>
-                        <span>${selectedCoin.price.toLocaleString()}</span>
-                        <span className={selectedCoin.change >= 0 ? "text-green-500" : "text-red-500"}>
-                            {selectedCoin.change}%
+                        <span>${selectedCoin.current_price.toLocaleString()}</span>
+                        <span className={selectedCoin.price_change_percentage_24h >= 0 ? "text-green-500" : "text-red-500"}>
+                            {selectedCoin.price_change_percentage_24h}%
                         </span>
-                        <span>${selectedCoin.marketCap.toLocaleString()}</span>
-                        <span>${selectedCoin.marketVolume.toLocaleString()}</span>
-                        <span>{selectedCoin.circulatingSupply.toLocaleString()}</span>
+                        <span>${selectedCoin.market_cap.toLocaleString()}</span>
+                        <span>${selectedCoin.total_volume.toLocaleString()}</span>
+                        <span>{selectedCoin.total_supply.toLocaleString()}</span>
                         <span>${selectedCoin.ath.toLocaleString()}</span>
                         <span>${selectedCoin.atl.toLocaleString()}</span>
                     </div>

@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-ico
 import { FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import { Coin } from "@/app/features/coinSlice";
+import { CryptoData } from "@/app/features/coinSlice";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { useUserFavorites } from "@/app/hooks/useUserFavorites";
@@ -19,7 +19,7 @@ const Favourites: React.FC = () => {
     // Favori coin'lere ait tüm bilgileri almak için
     const favoriteCoinsWithDetails = favoriteCoins
         .map(coinName => allCoins.find(coin => coin.name === coinName))
-        .filter((coin): coin is Coin => coin !== undefined);
+        .filter((coin): coin is CryptoData => coin !== undefined);
     const t = getTranslation(locale);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const Favourites: React.FC = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm w-full mx-auto transition-transform duration-300 h-[170px]">
                     {paginatedCoins.map((coin, index) => {
-                        const isPositive = coin.change >= 0;
+                        const isPositive = coin.price_change_percentage_24h >= 0;
                         return (
                             <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)] dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
                                 <div className="flex flex-col w-1/2 h-full justify-between">
@@ -64,14 +64,14 @@ const Favourites: React.FC = () => {
                                                 onClick={() => removeFavoriteCoin(coin.name)}
                                             />
                                         </div>
-                                        <div className="w-6 h-6 bg-red-200 rounded-full"></div>
+                                        <div className="w-6 h-6 rounded-full"><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></div>
                                         <div className="font-semibold">{coin.name}</div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <span className="font-bold text-xs">${coin.price.toLocaleString()}</span>
+                                        <span className="font-bold text-xs">${coin.current_price.toLocaleString()}</span>
                                         <span className={`text-xs font-medium flex items-center ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                                             <span> {isPositive ? <FiArrowUp /> : <FiArrowDown />}</span>
-                                            {coin.change}%
+                                            {coin.price_change_percentage_24h.toFixed(2)}%
                                         </span>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { RootState } from '@/app/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { Coin, setSelectedCoin } from '@/app/features/coinSlice';
+import { CryptoData, setSelectedCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation';
 import { useUserFavorites } from '@/app/hooks/useUserFavorites';
@@ -14,14 +14,14 @@ const Top: React.FC = () => {
     const t = getTranslation(locale);
     const { user, favoriteCoins, addFavoriteCoin, removeFavoriteCoin } = useUserFavorites();
 
-    const handleOpenModal = (coin: Coin) => {
+    const handleOpenModal = (coin: CryptoData) => {
         dispatch(setSelectedCoin(coin));
     };
 
-    const sortedCoins = [...allCoins].sort((a: Coin, b: Coin) => b.marketCap - a.marketCap);
+    const sortedCoins = [...allCoins].sort((a: CryptoData, b: CryptoData) => b.market_cap - a.market_cap);
     const top5Coins = sortedCoins.slice(0, 5);
 
-    const handleFavoriteClick = (coin: Coin) => {
+    const handleFavoriteClick = (coin: CryptoData) => {
         if (!user) {
             alert("Lütfen giriş yapın!");
             return;
@@ -30,7 +30,7 @@ const Top: React.FC = () => {
         if (isFavorite) {
             removeFavoriteCoin(coin.name);
         } else {
-            addFavoriteCoin(coin);
+            addFavoriteCoin({ name: coin.name, price: coin.current_price, change: coin.price_change_percentage_24h });
         }
     };
 
@@ -62,13 +62,13 @@ const Top: React.FC = () => {
 
                         <span className="flex-[0.5] text-left">{index + 1}</span>
                         <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">{coin.name}</span>
-                        <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">{coin.price}</span>
+                        <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">${coin.current_price.toLocaleString()}</span>
                         <span onClick={() => handleOpenModal(coin)} className={`flex-[1.5] gap-1 text-left flex items-center cursor-pointer ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             <span>{isPositive ? <FiArrowUp /> : <FiArrowDown />}</span>
-                            {coin.change}%
+                            {coin.price_change_percentage_24h.toFixed(2)}%
                         </span>
-                        <span className="flex-[2] text-left sm:block hidden">{coin.marketVolume}</span>
-                        <span className="flex-[2] text-left sm:block hidden">{coin.marketCap}</span>
+                        <span className="flex-[2] text-left sm:block hidden">{coin.total_volume.toLocaleString()}</span>
+                        <span className="flex-[2] text-left sm:block hidden">{coin.market_cap.toLocaleString()}</span>
                     </div>
                 );
             })}
