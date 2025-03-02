@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface themeState {
  mode: "light" | "dark";
 }
+const savedTheme = localStorage.getItem('themeMode') as "light" | "dark" || 'dark';
 
 const initialState: themeState = {
-  mode:"dark"
+  mode:savedTheme
 }
 
 export const themeSlice = createSlice({
@@ -15,6 +15,7 @@ export const themeSlice = createSlice({
   reducers: {
    toggleTheme: (state) => {
     state.mode = state.mode === "light" ? "dark" : "light";
+    localStorage.setItem('themeMode', state.mode);
    }
   },
 })

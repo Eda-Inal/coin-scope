@@ -4,11 +4,13 @@ interface LanguageState {
     locale: string;
     language: string
 }
-
+const savedLocale = localStorage.getItem('locale') || 'en';
 const initialState: LanguageState = {
-    locale: "en",
-    language: "English"
+    locale: savedLocale,
+    language: savedLocale === 'en' ? 'English' : savedLocale === 'tr' ? 'Türkçe' : 'Deutsch',
 };
+
+
 
 const languageSlice = createSlice({
     name: "language",
@@ -19,6 +21,7 @@ const languageSlice = createSlice({
             if (state.locale === "en") state.language = "English"
             else if (state.locale === "tr") state.language = "Türkçe"
             else state.language = "Deutsch"
+            localStorage.setItem('locale', state.locale);
         },
     },
 });

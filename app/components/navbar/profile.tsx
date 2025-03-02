@@ -36,16 +36,16 @@ const Profile: React.FC = () => {
         }
     };
     return (
-        <div className="relative ">
-   
-                    <div onClick={handleSignOut} className="bg-primary hover:bg-sky-600 text-white text-center px-4 py-1 w-28 rounded-md font-semibold cursor-pointer"
 
-                    >
-                      {t.signout}
-                    </div>
 
-          
+        <div onClick={handleSignOut} className="bg-primary relative hover:bg-sky-600 text-white text-center px-4 py-1 w-28 rounded-md font-semibold cursor-pointer"
+
+        >
+            {t.signout}
         </div>
+
+
+
     )
 }
 
