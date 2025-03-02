@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { setLanguage } from '../../features/languageSlice';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,10 +9,21 @@ const LanguageNavbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
     const { language } = useSelector((state: RootState) => state.language);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const savedLocale = localStorage.getItem("language");
+            if (savedLocale) {
+                dispatch(setLanguage(savedLocale));
+            }
+        }
+    }, [dispatch]);
     const handleLanguageChange = (lang: string) => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("language", lang);
+        }
         dispatch(setLanguage(lang));
         setIsOpen(false);
-        dispatch(setIsMenuOpen())
+        dispatch(setIsMenuOpen());
     };
 
     return (
