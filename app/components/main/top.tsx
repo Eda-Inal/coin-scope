@@ -6,6 +6,7 @@ import { CryptoData, setSelectedCoin } from '@/app/features/coinSlice';
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation';
 import { useUserFavorites } from '@/app/hooks/useUserFavorites';
+import { showNotification } from '@/app/features/notifactionSlice';
 
 const Top: React.FC = () => {
     const dispatch = useDispatch();
@@ -23,7 +24,12 @@ const Top: React.FC = () => {
 
     const handleFavoriteClick = (coin: CryptoData) => {
         if (!user) {
-            alert("Lütfen giriş yapın!");
+            dispatch(
+                showNotification({
+                    message: t.favLoginError,
+                    type: 'error',
+                })
+            );
             return;
         }
         const isFavorite = favoriteCoins.includes(coin.name);

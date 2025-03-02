@@ -6,6 +6,7 @@ import { setSelectedCoin, fetchCryptoData, CryptoData } from '@/app/features/coi
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation';
 import { useUserFavorites } from '@/app/hooks/useUserFavorites';
+import { showNotification } from '@/app/features/notifactionSlice';
 
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Coins: React.FC = () => {
                 <div className="flex-[0.3]">⭐</div>
                 <span className="flex-[0.3] text-left">#</span>
                 <span className="w-8 h-8 rounded-full mr-4  text-left"></span>
-                <span className="flex-[1.2] text-left sm:block hidden">{t.coin}</span>
+                <span className="flex-[1.2] text-left ">{t.coin}</span>
                 <span className="flex-[1.2] text-left">{t.price}</span>
                 <span className="flex-[1.2] text-left">{t.coin24}%</span>
                 <span className="flex-[2] text-left md:block hidden">{t.marketCap}</span>
@@ -70,7 +71,12 @@ const Coins: React.FC = () => {
                                     className="text-gray-400"
                                     onClick={() => {
                                         if (!user) {
-                                            alert("Lütfen giriş yapın!");
+                                            dispatch(
+                                                showNotification({
+                                                    message: t.favLoginError,
+                                                    type: 'error',
+                                                })
+                                            );
                                             return;
                                         }
                                         addFavoriteCoin({ name: coin.name, price: coin.current_price, change: coin.price_change_percentage_24h });
@@ -80,7 +86,7 @@ const Coins: React.FC = () => {
                         </div>
                         <span className="flex-[0.3] text-left">{index + 1}</span>
                         <span className="w-8 h-8 rounded-full mr-4  text-left "><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></span>
-                        <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] cursor-pointer text-left sm:block hidden">{coin.name}</span>
+                        <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] cursor-pointer text-left ">{coin.name}</span>
                         <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">${coin.current_price.toLocaleString()}</span>
                         <span onClick={() => handleOpenModal(coin)} className={`flex-[1.2] flex cursor-pointer items-center gap-1 ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             {isPositive ? <FiArrowUp className="text-green-500" /> : <FiArrowDown className="text-red-500" />}
