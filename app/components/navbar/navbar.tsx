@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from "../../../public/coin.png"
 import Image from 'next/image'
 import ChangeTheme from '../theme/changeTheme'
@@ -21,7 +21,18 @@ const Navbar: React.FC = () => {
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
     const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
+    const [theme, setTheme] = useState<"light" | "dark">(() => {
+        return (localStorage.getItem("theme") as "light" | "dark") || "dark";
+    });
+
+    useEffect(() => {
+        document.documentElement.classList.toggle("dark", theme === "dark");
+    }, [theme]);
+
     const handleThemeChange = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
         dispatch(toggleTheme());
     };
     const handleHamburgerClick = () => {
