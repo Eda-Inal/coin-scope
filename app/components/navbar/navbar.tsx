@@ -27,6 +27,11 @@ const Navbar: React.FC = () => {
         }
         return "dark"; 
     });
+    const [isClient, setIsClient] = useState(false);
+
+useEffect(() => {
+    setIsClient(true);
+}, []);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -56,7 +61,7 @@ const Navbar: React.FC = () => {
                 <div className="hidden sm:flex sm:gap-5 sm:items-center">
                     <li><ChangeTheme /></li>
                     <li><LanguageNavbar /></li>
-                    {isAuthenticated ? (
+                    {isClient && isAuthenticated ? (
                         <li><Profile /></li>
                     ) : (
                         <li>
@@ -94,7 +99,7 @@ const Navbar: React.FC = () => {
                         {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
-                    {isAuthenticated ? (
+                    {isClient && isAuthenticated  ? (
                         <li><Profile /></li>
                     ) : (
                         <li>
