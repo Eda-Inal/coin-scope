@@ -43,7 +43,7 @@ const ThemeLayout = ({ children }: { children: React.ReactNode }) => {
         <meta name="description" content="A cryptocurrency app for tracking coins." />
         <meta name="theme-color" content={mode === "dark" ? "#333" : "#fff"} />
         <link rel="icon" href="/coin.png" />
-        <title>CryptoTrack</title>
+        <title>CryptoTrack</title> 
       </head>
       <body className={`${roboto.variable} antialiased`}>
         <Navbar />
