@@ -36,6 +36,15 @@ const ThemeLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <html lang="en" className={mode === "dark" ? "dark" : ""}>
+         <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="description" content="A cryptocurrency app for tracking coins." />
+        <meta name="theme-color" content={mode === "dark" ? "#333" : "#fff"} />
+        <link rel="icon" href="/coin.png" />
+        <title>CryptoTrack</title>
+      </head>
       <body className={`${roboto.variable} antialiased`}>
         <Navbar />
         {children}
