@@ -30,40 +30,16 @@ const Home: React.FC = () => {
   }, [isAuthenticated, dispatch]);
 
   return (
-    <div className="lg:mx-6 mx-2 flex  flex-col h-[calc(100vh-58px)] py-3  ">
+    <div className="lg:mx-6 mx-2 flex  flex-col min-h-screen py-3  ">
 
       <div className="w-full  h-[235px] ">
         <Sidebar />
       </div>
       <div className="w-full mt-4  ">
-        <Coins/>
+        <Coins />
       </div>
-
-
-
-<CoinModal/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <CoinModal />
       <Notification />
-
-
-
-
 
     </div>
   );

@@ -104,8 +104,6 @@ const Coins: React.FC = () => {
                     </div>
                 );
             })}
-
-            <button className='mx-auto mt-4 p-2 mb-5 w-[120px] border-2 rounded-full'>Load More</button>
         </div>
     );
 };
