@@ -39,5 +39,6 @@
   "emptyFavorite": "Takip edilenler listeniz boş. Favori coin'lerinizi eklemeye başlayın ve kolayca takip edin!",
   "tracked": "Takip Edilenler",
   "top5": "Piyasa Değeri",
-  "favLoginError": "Hata, coinlerini takip etmek için önce giriş yapmalısın."
+  "favLoginError": "Hata, coinlerini takip etmek için önce giriş yapmalısın.",
+"footer":"Tüm hakları saklıdır."
 }

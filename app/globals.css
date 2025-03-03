@@ -13,3 +13,29 @@ html.dark body {
   color: #f8f8f8;
 
 }
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust width for minimal look */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track for a cleaner look */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(78, 78, 78, 0.5); /* Subtle dark gray for light mode */
+  border-radius: 4px; /* Rounded edges for a modern feel */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(78, 78, 78, 0.7); /* Slightly darker on hover */
+}
+
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(248, 248, 248, 0.4); /* Light color for dark mode */
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(248, 248, 248, 0.6); /* Brighter on hover */
+}
