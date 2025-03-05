@@ -28,6 +28,9 @@ export interface CryptoData {
     atl_date: string;
     roi: null;
     last_updated: string;
+    sparkline_in_7d?: {
+        price: number[];
+    };
 }
 
 interface CoinState {
@@ -43,14 +46,14 @@ export const fetchCryptoData = createAsyncThunk<CryptoData[]>(
     "coin/fetchCryptoData",
     async () => {
         const response = await axios.get(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd"
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&sparkline=true"
         );
-        return response.data; 
+        return response.data;
     }
 );
 
 const initialState: CoinState = {
-    allCoins: [], 
+    allCoins: [],
     selectedCoin: null,
     isModalOpen: false,
     favoriteCoins: [],

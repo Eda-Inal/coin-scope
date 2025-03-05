@@ -8,6 +8,7 @@ import { CryptoData } from "@/app/features/coinSlice";
 import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { useUserFavorites } from "@/app/hooks/useUserFavorites";
+import Sparkline from "../sparkline";
 
 const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -54,7 +55,8 @@ const Favourites: React.FC = () => {
                     {paginatedCoins.map((coin, index) => {
                         const isPositive = coin.price_change_percentage_24h >= 0;
                         return (
-                            <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] bg-[linear-gradient(to_right_bottom,#ffffff,#ffffff,#f9fafb,#f6f7f8,#f3f5f6,#e3eef3,#d2e8f0,#c0e1ec,#9dd3e9,#79c4e9,#7DD6FF,#7DD6FF)] dark:bg-[linear-gradient(to_right_bottom,#263354,#232c4c,#1f2644,#1c1f3d,#181935,#1d2040,#21284b,#253057,#2e4a7a,#31679f,#2b85c4,#0ea5e9)] gap-3">
+                            <div key={index} className="flex justify-between p-2 rounded-lg shadow-sm w-full h-[85px] 
+ gap-3">
                                 <div className="flex flex-col w-1/2 h-full justify-between">
                                     <div className="flex flex-row items-center gap-2">
                                         <div className="cursor-pointer">
@@ -75,7 +77,7 @@ const Favourites: React.FC = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="h-full w-1/2"></div>
+                                <div className="h-full w-1/2 flex items-center justify-center">{coin.sparkline_in_7d?.price && <Sparkline data={coin.sparkline_in_7d.price} />}</div>
                             </div>
                         )
                     })}

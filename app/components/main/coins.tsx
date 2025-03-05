@@ -7,6 +7,7 @@ import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation';
 import { useUserFavorites } from '@/app/hooks/useUserFavorites';
 import { showNotification } from '@/app/features/notifactionSlice';
+import Sparkline from '../sparkline';
 
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
@@ -98,9 +99,13 @@ const Coins: React.FC = () => {
                         <span className="flex-[1] text-left lg:block hidden">${coin.ath.toLocaleString()}</span>
                         <span className="flex-[1] text-left lg:block hidden">${coin.atl.toLocaleString()}</span>
 
+
+
+                        {/* Sparkline grafiği */}
                         <div className="flex-[2] text-left sm:block hidden">
-                            <div className="h-8 w-full rounded-md"></div>
+                            {coin.sparkline_in_7d?.price ? <Sparkline data={coin.sparkline_in_7d.price} /> : <div className="h-8 w-full rounded-md bg-gray-200 dark:bg-gray-700"></div>}
                         </div>
+
                     </div>
                 );
             })}
