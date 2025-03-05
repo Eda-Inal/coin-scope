@@ -6,6 +6,7 @@ import authReducer from "./features/authSlice"
 import userReducer from "./features/userSlice"
 import notificationReducer  from "./features/notifactionSlice"
 import coinReducer from "./features/coinSlice"
+import trendReducer from "./features/trendcoinsSlice"
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     auth: authReducer,
     user: userReducer,
     notification: notificationReducer,
-    coin : coinReducer
+    coin : coinReducer,
+    trend : trendReducer
 
   },
 })

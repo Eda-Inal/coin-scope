@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
             {/* mobile, tablet */}
             <div className='w-full h-full border-b shadow-sm lg:hidden rounded-lg'>
                 <div className='flex gap-2  px-2 h-[25px] '>
-                    <button onClick={() => setActiveTab('top')} className={` ${activeTab === 'top' ?  "text-primary":""}`}>{t.top5}</button>
+                    <button onClick={() => setActiveTab('top')} className={` ${activeTab === 'top' ?  "text-primary":""}`}>{t.trending}</button>
                     <div>|</div>
                     <button onClick={() => setActiveTab('favourites')} className={` ${activeTab !== 'top' ?  "text-primary":""}`}>{t.tracked}</button>
                 </div>
@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
             {/* big screens */}
             <div className='hidden w-full  lg:flex  h-full gap-3    '>
                 <div className="  h-full w-1/2 border-b dark:border-gray-700   rounded-lg  px-2 shadow-lg border-t ">
-                    <div>{t.top5}</div>
+                    <div>{t.trending}</div>
                     <Top />
                 </div>
                 <div className=" h-full  w-1/2 rounded-lg px-2 border-b dark:border-gray-700 shadow-lg border-t  ">
