@@ -20,6 +20,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className=" text-3xl  transition"
+            aria-label="Visit my GitHub profile"
           >
             <FaGithub />
           </a>
@@ -30,6 +31,8 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className=" text-3xl  transition"
+            aria-label="Visit my LinkedIn profile"
+            
           >
             <FaLinkedin />
           </a>

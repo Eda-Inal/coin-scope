@@ -51,38 +51,40 @@ useEffect(() => {
 
     return (
         <nav className="relative py-3 px-2 sm:px-8  ">
-            <ul className="flex justify-between items-center">
-                <Link href="/">
-                    <div className="flex items-center gap-1 cursor-pointer">
-                        <Image src={Logo} width={32} height={32} alt="Logo" />
-                        <li>CryptoTrack</li>
-                    </div>
+           <ul className="flex justify-between items-center">
+    <li>
+        <Link href="/">
+            <div className="flex items-center gap-1 cursor-pointer">
+                <Image src={Logo} width={32} height={32} alt="Logo" />
+                CryptoTrack
+            </div>
+        </Link>
+    </li>
+    <div className="hidden sm:flex sm:gap-5 sm:items-center">
+        <li><ChangeTheme /></li>
+        <li><LanguageNavbar /></li>
+        {isClient && isAuthenticated ? (
+            <li><Profile /></li>
+        ) : (
+            <li>
+                <Link href="/login">
+                    <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
+                        {t.signIn}
+                    </button>
                 </Link>
-                <div className="hidden sm:flex sm:gap-5 sm:items-center">
-                    <li><ChangeTheme /></li>
-                    <li><LanguageNavbar /></li>
-                    {isClient && isAuthenticated ? (
-                        <li><Profile /></li>
-                    ) : (
-                        <li>
-                            <Link href="/login">
-                                <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
-                                    {t.signIn}
-                                </button>
-                            </Link>
-                        </li>
-                    )}
-                </div>
+            </li>
+        )}
+    </div>
 
+    <div className="sm:hidden">
+        {isMenuOpen ? (
+            <CloseIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
+        ) : (
+            <HamburgerIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
+        )}
+    </div>
+</ul>
 
-                <div className="sm:hidden">
-                    {isMenuOpen ?
-                        <CloseIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
-                        :
-                        <HamburgerIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
-                    }
-                </div>
-            </ul>
 
 
             <div className={`sm:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-0 left-0 w-full bg-lightBackground shadow-md  dark:bg-darkBackground dark:shadow-[0_2px_3px_0_rgba(255,255,255,0.2)] z-20 py-3 px-2`}>
