@@ -10,7 +10,6 @@ I have recently completed the development of my crypto tracker application using
 - **Fetching real-time data from CoinGecko API**
 - **Price change graph with Recharts**
 
-With this project, I created a user-friendly, fast, and efficient crypto tracker platform. It has been a great experience learning and implementing new technologies!
 
 **Live Demo**: [https://coin-scope-sandy.vercel.app/]
 
