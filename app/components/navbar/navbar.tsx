@@ -97,7 +97,7 @@ useEffect(() => {
                 </div>
                 <ul className="flex flex-col gap-4 mt-8 items-center">
                     <li onClick={handleThemeChange} className="flex cursor-pointer gap-2 border-b px-4 py-1 w-28 hover:border-b hover:border-primary  text-md " >
-                        Theme
+                        {t.theme}
                         {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
