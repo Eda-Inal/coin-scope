@@ -37,7 +37,8 @@ const Coins: React.FC = () => {
 
     return (
         <div className='flex flex-col gap-2 h-full w-full mt-2 justify-between'>
-            <div className="flex flex-row justify-between font-semibold p-2 border-b dark:border-b-gray-700 items-center">
+   <div className="flex flex-row justify-between font-semibold p-2 border-b dark:border-b-gray-700 items-center
+                sticky top-0 bg-lightPrimary dark:bg-darkBackground bg-lightBackground z-10">
                 <div className="flex-[0.3]"></div>
                 <span className="flex-[0.3] text-left">#</span>
                 <span className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-4  text-left"></span>
