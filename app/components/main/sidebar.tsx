@@ -4,6 +4,8 @@ import Favourites from './favs'
 import { getTranslation } from '@/app/utils/getTranslation'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/app/store'
+import { HiMiniRocketLaunch } from "react-icons/hi2";
+import { PiShootingStarFill } from "react-icons/pi";
 
 
 const Sidebar: React.FC = () => {
@@ -15,9 +17,20 @@ const Sidebar: React.FC = () => {
             {/* mobile, tablet */}
             <div className='w-full h-full border-b shadow-sm lg:hidden rounded-lg'>
                 <div className='flex gap-2  px-2 h-[25px] '>
-                    <button onClick={() => setActiveTab('top')} className={` ${activeTab === 'top' ?  "text-primary":""}`}>{t.trending}</button>
+                    <div className='flex items-center gap-1'>
+                    <HiMiniRocketLaunch color='#facc15'/>
+                    <button onClick={() => setActiveTab('top')} className={` $font-semibold tracking-wider ${activeTab === 'top' ?  "text-primary":""}`}>
+                        {t.trending}</button>
+                    </div>
+              
                     <div>|</div>
-                    <button onClick={() => setActiveTab('favourites')} className={` ${activeTab !== 'top' ?  "text-primary":""}`}>{t.tracked}</button>
+                    <div className='flex items-center gap-1'>
+                    <PiShootingStarFill color='#9DD458'/>
+                    <button onClick={() => setActiveTab('favourites')} className={`font-semibold tracking-wider ${activeTab !== 'top' ?  "text-primary":""}`}>
+                        
+                        {t.tracked}</button>
+                    </div>
+                   
                 </div>
 
                 <div className="  h-full mt-1 lg:hidden px-2 ">
@@ -28,11 +41,19 @@ const Sidebar: React.FC = () => {
             {/* big screens */}
             <div className='hidden w-full  lg:flex  h-full gap-3    '>
                 <div className="  h-full w-1/2 border-b dark:border-gray-700   rounded-lg  px-2 shadow-lg border-t ">
-                    <div>{t.trending}</div>
+                <div className='flex items-center gap-1'>
+                <HiMiniRocketLaunch color='#facc15'/>
+                <span className='font-semibold tracking-wider'>{t.trending}</span>
+                </div>
+                
                     <Top />
                 </div>
                 <div className=" h-full  w-1/2 rounded-lg px-2 border-b dark:border-gray-700 shadow-lg border-t  ">
-                    <div className='h-[25px]'>{t.tracked}</div>
+                <div className='flex items-center gap-1'>
+                    <PiShootingStarFill color='#9DD458'/>
+                    <span className='h-[25px] font-semibold tracking-wider'>{t.tracked}</span>
+                </div>
+                    
                     <Favourites />
                 </div>
             </div>

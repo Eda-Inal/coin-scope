@@ -15,12 +15,12 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
     }));
 
     return (
-        <ResponsiveContainer width="100%" height={40}>
+        <ResponsiveContainer width="100%" height={70}>
             <AreaChart data={normalizedData}>
                 <defs>
                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.8} />
-                        <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.3} />
+                        <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0.8} />
+                        <stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.3} />
                     </linearGradient>
                 </defs>
 
@@ -30,7 +30,7 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
                 <Area
                     type="monotone"
                     dataKey="scaledPrice"
-                    stroke="#3b82f6"
+                    stroke="#0ea5e9"
                     fill="none"
                     strokeWidth={2}
                     animationDuration={0} 

@@ -5,10 +5,10 @@ import { FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { CryptoData } from "@/app/features/coinSlice";
-import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { useUserFavorites } from "@/app/hooks/useUserFavorites";
 import Sparkline from "../sparkline";
+import { TiArrowSortedDown,TiArrowSortedUp  } from "react-icons/ti";
 
 const Favourites: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -72,7 +72,7 @@ const Favourites: React.FC = () => {
                                     <div className="flex items-center gap-2">
                                         <span className="font-bold text-xs">${coin.current_price.toLocaleString()}</span>
                                         <span className={`text-xs font-medium flex items-center ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
-                                            <span> {isPositive ? <FiArrowUp /> : <FiArrowDown />}</span>
+                                            <span> {isPositive ? <TiArrowSortedUp /> : <TiArrowSortedDown />}</span>
                                             {coin.price_change_percentage_24h.toFixed(2)}%
                                         </span>
                                     </div>

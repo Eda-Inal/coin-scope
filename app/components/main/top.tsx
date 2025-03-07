@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { RootState } from '@/app/store';
 import { getTranslation } from '@/app/utils/getTranslation';
 import { fetchTrendCoins } from '@/app/features/trendcoinsSlice';
+import { TiArrowSortedDown,TiArrowSortedUp  } from "react-icons/ti";
+
 
 const Top: React.FC = () => {
     const dispatch = useDispatch();
@@ -29,11 +30,11 @@ const Top: React.FC = () => {
                 const isPositive = coin.price_change_percentage_24h >= 0;
                 return (
                     <div key={index} className="flex flex-row justify-between items-center text-sm border-t dark:border-gray-700 border-gray-200 p-1">
-                       <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap">{coin.name}</span>
+                       <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{coin.name}</span>
 
                         <span className="flex-[1.2] text-left ">${coin.price?.toLocaleString()}</span>
-                        <span className={`flex-[1.5] gap-1 text-left flex items-center cursor-pointer ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
-                            <span>{isPositive ? <FiArrowUp /> : <FiArrowDown />}</span>
+                        <span className={`flex-[1.5] gap-1 text-left flex items-center cursor-pointer font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                            <span>{isPositive ? <TiArrowSortedUp /> : <TiArrowSortedDown />}</span>
                             {coin.price_change_percentage_24h?.toFixed(2)}%
                         </span>
                         <span className="flex-[2] text-left sm:block hidden">{coin.total_volume?.toLocaleString()}</span>
