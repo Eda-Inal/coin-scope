@@ -19,6 +19,7 @@ const Top: React.FC = () => {
     return (
         <div className='flex flex-col gap-1 h-[205px] py-2 w-full justify-between'>
             <div className="flex flex-row justify-between font-semibold text-sm">
+            <span className="w-5 h-5 rounded-full mr-4  text-left"></span>
                 <span className="flex-[1.5] text-left">{t.coin}</span>
                 <span className="flex-[1.2] text-left">{t.price}</span>
                 <span className="flex-[1.5] text-left">{t.coin24} %</span>
@@ -29,7 +30,10 @@ const Top: React.FC = () => {
             {trendCoins.map((coin, index) => {
                 const isPositive = coin.price_change_percentage_24h >= 0;
                 return (
-                    <div key={index} className="flex flex-row justify-between items-center text-sm border-t dark:border-gray-700 border-gray-200 p-1">
+                    <div key={index} className="flex flex-row justify-between items-center text-sm  dark:border-gray-700 border-gray-200 p-1">
+                         <span className="w-5 h-5  rounded-full mr-4  text-left">
+                         <img src={coin.thumb} alt={coin.name} className="w-full h-full object-cover rounded-full" />
+                         </span>
                        <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{coin.name}</span>
 
                         <span className="flex-[1.2] text-left ">${coin.price?.toLocaleString()}</span>

@@ -8,6 +8,7 @@ import Notification from "./components/notification";
 import Sidebar from "./components/main/sidebar";
 import Coins from "./components/main/coins";
 import CoinModal from "./components/coinModal";
+import Search from "./components/search";
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
@@ -35,6 +36,7 @@ const Home: React.FC = () => {
       <div className="w-full  h-[235px] ">
         <Sidebar />
       </div>
+      <div className="mt-4 w-full"  ><Search /></div>
       <div className="w-full mt-4  ">
         <Coins />
       </div>
