@@ -86,7 +86,7 @@ const Coins: React.FC = () => {
                             )}
                         </div>
                         <span className="flex-[0.3] text-left">{index + 1}</span>
-                        <span className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-4  text-left "><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></span>
+                        <span onClick={() => handleOpenModal(coin)} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-4 cursor-pointer text-left "><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></span>
                         <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] cursor-pointer text-left font-semibold ">{coin.name}</span>
                         <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">${coin.current_price.toLocaleString()}</span>
                         <span onClick={() => handleOpenModal(coin)} className={`flex-[1.2] flex cursor-pointer items-center gap-1 font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
