@@ -15,7 +15,7 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
     }));
 
     return (
-        <ResponsiveContainer width="100%" height={70}>
+        <ResponsiveContainer width="100%" height={60}>
             <AreaChart data={normalizedData}>
                 <defs>
                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
