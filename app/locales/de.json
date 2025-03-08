@@ -41,5 +41,6 @@
   "trending": " Trending",
   "favLoginError": "Sie müssen sich zuerst anmeldenum Ihre Münzen zu verfolgen",
   "footer": "Alle Rechte vorbehalten.",
-  "theme":"Thema"
+  "theme":"Thema",
+  "noCoinsFound":"Keine Coin-Informationen gefunden."
 }

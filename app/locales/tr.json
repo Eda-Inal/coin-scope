@@ -41,5 +41,6 @@
   "trending": "Trendler",
   "favLoginError": "Hata, coinlerini takip etmek için önce giriş yapmalısın.",
 "footer":"Tüm hakları saklıdır.",
-"theme":"Tema"
+"theme":"Tema",
+"noCoinsFound":"Böyle bir coin bilgisi bulunamamaktadır."
 }

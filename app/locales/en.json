@@ -41,5 +41,6 @@
   "trending": "Trending",
   "favLoginError": "Error, you must log in first to track your coins",
   "footer":"All rights reserved.",
-  "theme":"Theme"
+  "theme":"Theme",
+  "noCoinsFound":"No coin information found."
 }
