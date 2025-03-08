@@ -40,6 +40,7 @@ interface CoinState {
     favoriteCoins: string[];
     status: "idle" | "loading" | "succeeded" | "failed";
     error: string | null;
+    filteredCoins: CryptoData[];
 }
 
 export const fetchCryptoData = createAsyncThunk<CryptoData[]>(
@@ -59,6 +60,7 @@ const initialState: CoinState = {
     favoriteCoins: [],
     status: "idle",
     error: null,
+    filteredCoins: []
 };
 
 const coinSlice = createSlice({
@@ -80,6 +82,15 @@ const coinSlice = createSlice({
         removeFavoriteCoin: (state, action: PayloadAction<string>) => {
             state.favoriteCoins = state.favoriteCoins.filter(coin => coin !== action.payload);
         },
+        setSearchQuery: (state, action: PayloadAction<string>) => {
+            if (action.payload.trim() === "") {
+                state.filteredCoins = state.allCoins;
+            } else {
+                state.filteredCoins = state.allCoins.filter((coin) =>
+                    coin.name.toLowerCase().includes(action.payload.toLowerCase())
+                );
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -89,6 +100,7 @@ const coinSlice = createSlice({
             .addCase(fetchCryptoData.fulfilled, (state, action: PayloadAction<CryptoData[]>) => {
                 state.status = "succeeded";
                 state.allCoins = action.payload;
+                state.filteredCoins = action.payload;
             })
             .addCase(fetchCryptoData.rejected, (state, action) => {
                 state.status = "failed";
@@ -102,6 +114,7 @@ export const {
     setFavorites,
     addFavoriteCoin,
     removeFavoriteCoin,
+    setSearchQuery
 } = coinSlice.actions;
 
 export default coinSlice.reducer;

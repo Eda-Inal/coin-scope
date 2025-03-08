@@ -11,7 +11,7 @@ import { TiArrowSortedDown,TiArrowSortedUp  } from "react-icons/ti";
 
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
-    const { allCoins, status, error } = useSelector((state: RootState) => state.coin);
+    const { status, error, filteredCoins } = useSelector((state: RootState) => state.coin);
     const locale = useSelector((state: RootState) => state.language.locale);
     const t = getTranslation(locale);
 
@@ -53,7 +53,7 @@ const Coins: React.FC = () => {
                 <span className="flex-[2] text-left sm:block hidden">{t.coinChart}</span>
             </div>
 
-            {allCoins.map((coin, index) => {
+            {filteredCoins.map((coin, index) => {
                 const isPositive = coin.price_change_percentage_24h >= 0;
                 const isFavorite = favoriteCoins.includes(coin.name);
 
