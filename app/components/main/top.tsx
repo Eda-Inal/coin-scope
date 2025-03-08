@@ -37,7 +37,7 @@ const Top: React.FC = () => {
                        <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{coin.name}</span>
 
                         <span className="flex-[1.2] text-left ">${coin.price?.toLocaleString()}</span>
-                        <span className={`flex-[1.5] gap-1 text-left flex items-center cursor-pointer font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                        <span className={`flex-[1.5] gap-1 text-left flex items-center  font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                             <span>{isPositive ? <TiArrowSortedUp /> : <TiArrowSortedDown />}</span>
                             {coin.price_change_percentage_24h?.toFixed(2)}%
                         </span>
