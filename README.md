@@ -13,4 +13,4 @@ I have recently completed the development of my crypto tracker application using
 
 **Live Demo**: https://coin-scope-sandy.vercel.app/
 
-![coin-scope](https://github.com/user-attachments/assets/98f59936-1dc2-4308-9eb6-06780d44f730)
+![Crypto Tracker](https://github.com/user-attachments/assets/0b0acd4e-ac1b-433b-bd21-e89cadf36a7d)
