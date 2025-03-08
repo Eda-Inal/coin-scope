@@ -30,7 +30,7 @@ const Top: React.FC = () => {
             {trendCoins.map((coin, index) => {
                 const isPositive = coin.price_change_percentage_24h >= 0;
                 return (
-                    <div key={index} className="flex flex-row justify-between items-center text-sm  dark:border-gray-700 border-gray-200 p-1">
+                    <div key={index} className="flex flex-row justify-between items-center text-sm dark:hover:bg-darkSecondary hover:bg-lightSecondary  dark:border-gray-700 border-gray-200 p-1">
                          <span className="w-5 h-5  rounded-full mr-4  text-left">
                          <img src={coin.thumb} alt={coin.name} className="w-full h-full object-cover rounded-full" />
                          </span>

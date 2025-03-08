@@ -60,9 +60,9 @@ const Coins: React.FC = () => {
                 return (
                     <div
                         key={coin.id}
-                        className="flex flex-row justify-between items-center  text-sm py-3 px-2 mt-1"
+                        className="flex flex-row justify-between items-center  text-sm py-3 px-2 mt-1 dark:hover:bg-darkSecondary hover:bg-lightSecondary "
                     >
-                        <div className="flex-[0.3] text-lg cursor-pointer">
+                        <div className="flex-[0.3] text-lg cursor-pointer ">
                             {isFavorite ? (
                                 <FaStar
                                     className="text-yellow-500"

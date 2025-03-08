@@ -15,7 +15,7 @@ const Search: React.FC = () => {
             <input
                 type="text"
                 placeholder="Search..."
-                className="w-full pl-10 pr-4 py-2 rounded-full border border-gray-500 focus:outline-none focus:ring-0  shadow-sm dark:bg-darkBackground bg-lightBackground"
+                className="w-full pl-10 pr-4 py-2 rounded-full border dark:border-gray-500 border-gray-300 focus:outline-none focus:ring-0  shadow-sm dark:bg-darkBackground bg-lightBackground"
                 onChange={handleSearch}
             />
         </div>
