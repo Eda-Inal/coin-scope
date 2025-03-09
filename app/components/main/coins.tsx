@@ -6,10 +6,10 @@ import { setSelectedCoin, fetchCryptoData, CryptoData } from '@/app/features/coi
 import { getTranslation } from '@/app/utils/getTranslation';
 import { useUserFavorites } from '@/app/hooks/useUserFavorites';
 import { showNotification } from '@/app/features/notifactionSlice';
-import Sparkline from '../sparkline';
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import Image from 'next/image';
-
+import dynamic from 'next/dynamic';
+const Sparkline = dynamic(() => import('../sparkline'), { ssr: false });
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
     const { status, error, filteredCoins } = useSelector((state: RootState) => state.coin);
