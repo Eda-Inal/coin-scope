@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "./store";
 import { getTranslation } from "./utils/getTranslation";
 import { showNotification } from "./features/notifactionSlice";
-import Notification from "./components/notification";
 import Sidebar from "./components/main/sidebar";
 import Coins from "./components/main/coins";
 import Search from "./components/search";
 import dynamic from "next/dynamic";
 const CoinModal = dynamic(() => import('./components/coinModal'), {
+  ssr: false, 
+});
+const Notification = dynamic(() => import('./components/notification'), {
   ssr: false, 
 });
 const Home: React.FC = () => {
