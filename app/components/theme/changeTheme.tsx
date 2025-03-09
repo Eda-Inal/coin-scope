@@ -1,15 +1,20 @@
 'use client'
 import React, { useState, useEffect } from "react";
-import {useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../features/theme";
+import { RootState } from '@/app/store'
+import { getTranslation } from '@/app/utils/getTranslation'
+import { useSelector } from 'react-redux'
 
 const ChangeTheme: React.FC = () => {
     const dispatch = useDispatch();
+    const locale = useSelector((state: RootState) => state.language.locale);
+    const t = getTranslation(locale);
     const [localTheme, setLocalTheme] = useState<"light" | "dark">(() => {
         if (typeof window !== "undefined") {
             return (localStorage.getItem("theme") as "light" | "dark") || "dark";
         }
-        return "dark"; 
+        return "dark";
     });
 
     useEffect(() => {
@@ -27,6 +32,9 @@ const ChangeTheme: React.FC = () => {
 
     return (
         <div className="flex items-center">
+            <label htmlFor="theme-switch" className="sr-only">
+                {t.changeTheme}
+            </label>
             <div className="relative inline-block w-12 h-6">
                 <input
                     type="checkbox"

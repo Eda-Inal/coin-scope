@@ -42,5 +42,6 @@
   "favLoginError": "Error, you must log in first to track your coins",
   "footer":"All rights reserved.",
   "theme":"Theme",
-  "noCoinsFound":"No coin information found."
+  "noCoinsFound":"No coin information found.",
+  "changeTheme" : "Change theme"
 }

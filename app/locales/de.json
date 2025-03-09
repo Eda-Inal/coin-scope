@@ -42,5 +42,6 @@
   "favLoginError": "Sie müssen sich zuerst anmeldenum Ihre Münzen zu verfolgen",
   "footer": "Alle Rechte vorbehalten.",
   "theme":"Thema",
-  "noCoinsFound":"Keine Coin-Informationen gefunden."
+  "noCoinsFound":"Keine Coin-Informationen gefunden.",
+  "changeTheme" : "Thema ändern"
 }

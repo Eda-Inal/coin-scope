@@ -42,5 +42,6 @@
   "favLoginError": "Hata, coinlerini takip etmek için önce giriş yapmalısın.",
 "footer":"Tüm hakları saklıdır.",
 "theme":"Tema",
-"noCoinsFound":"Böyle bir coin bilgisi bulunamamaktadır."
+"noCoinsFound":"Böyle bir coin bilgisi bulunamamaktadır.",
+"changeTheme" : "Tema değiştir"
 }
