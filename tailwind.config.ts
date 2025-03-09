@@ -13,7 +13,7 @@ export default {
         lightBackground: "#ffffff ",
         darkText: "#ffffff",
         lightText: "#2d3748",
-        primary:"#0288d1",
+        primary:"#0755E7",
         lightSecondary:"#f7f7f7",
         darkSecondary:"#263354",
         darkCard: "#2C3A66"

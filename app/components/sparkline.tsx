@@ -22,7 +22,7 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
                 <Area
                     type="monotone"
                     dataKey="scaledPrice"
-                    stroke="#0288d1"
+                    stroke="#0755E7"
                     fill="none"
                     strokeWidth={2}
                     animationDuration={0}
