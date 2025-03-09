@@ -8,6 +8,7 @@ import { useUserFavorites } from '@/app/hooks/useUserFavorites';
 import { showNotification } from '@/app/features/notifactionSlice';
 import Sparkline from '../sparkline';
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
+import Image from 'next/image';
 
 const Coins: React.FC = () => {
     const dispatch = useDispatch();
@@ -93,7 +94,15 @@ const Coins: React.FC = () => {
                                         )}
                                     </div>
                                     <span className="flex-[0.3] text-left">{index + 1}</span>
-                                    <span onClick={() => handleOpenModal(coin)} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-4 cursor-pointer text-left "><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></span>
+                                    <span onClick={() => handleOpenModal(coin)} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-4 cursor-pointer text-left "> <Image
+                                        src={coin.image}
+                                        alt={coin.name}
+                                        layout="intrinsic"
+                                        width={32}
+                                        height={32}
+                                        className="rounded-full"
+                                        objectFit="cover"
+                                    /></span>
                                     <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] cursor-pointer text-left font-semibold ">{coin.name}</span>
                                     <span onClick={() => handleOpenModal(coin)} className="flex-[1.2] text-left cursor-pointer">${coin.current_price.toLocaleString()}</span>
                                     <span onClick={() => handleOpenModal(coin)} className={`flex-[1.2] flex cursor-pointer items-center gap-1 font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>

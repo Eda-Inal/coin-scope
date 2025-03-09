@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/app/store';
 import { getTranslation } from '@/app/utils/getTranslation';
 import { fetchTrendCoins } from '@/app/features/trendcoinsSlice';
-import { TiArrowSortedDown,TiArrowSortedUp  } from "react-icons/ti";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
+import Image from 'next/image';
 
 
 const Top: React.FC = () => {
@@ -19,7 +20,7 @@ const Top: React.FC = () => {
     return (
         <div className='flex flex-col gap-1 h-[205px] py-2 w-full justify-between'>
             <div className="flex flex-row justify-between font-semibold text-sm">
-            <span className="w-5 h-5 rounded-full mr-4  text-left"></span>
+                <span className="w-5 h-5 rounded-full mr-4  text-left"></span>
                 <span className="flex-[1.5] text-left">{t.coin}</span>
                 <span className="flex-[1.2] text-left">{t.price}</span>
                 <span className="flex-[1.5] text-left">{t.coin24} %</span>
@@ -31,10 +32,21 @@ const Top: React.FC = () => {
                 const isPositive = coin.price_change_percentage_24h >= 0;
                 return (
                     <div key={index} className="flex flex-row justify-between items-center text-sm  dark:border-gray-700 border-gray-200 p-1">
-                         <span className="w-5 h-5  rounded-full mr-4  text-left">
-                         <img src={coin.thumb} alt={coin.name} className="w-full h-full object-cover rounded-full" />
-                         </span>
-                       <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{coin.name}</span>
+
+
+                        <span className="w-5 h-5 rounded-full mr-4 text-left">
+                            <Image
+                                src={coin.thumb}
+                                alt={coin.name}
+                                layout="intrinsic"
+                                width={20}
+                                height={20}
+                                className="rounded-full"
+                                objectFit="cover"
+                            />
+                        </span>
+
+                        <span className="flex-[1.5] text-left overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{coin.name}</span>
 
                         <span className="flex-[1.2] text-left ">${coin.price?.toLocaleString()}</span>
                         <span className={`flex-[1.5] gap-1 text-left flex items-center  font-semibold ${isPositive ? 'text-green-500' : 'text-red-500'}`}>

@@ -2,14 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
 import { CryptoData } from "@/app/features/coinSlice";
 import { getTranslation } from '@/app/utils/getTranslation'
 import { useUserFavorites } from "@/app/hooks/useUserFavorites";
 import Sparkline from "../sparkline";
-import { TiArrowSortedDown,TiArrowSortedUp  } from "react-icons/ti";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { setSelectedCoin } from "@/app/features/coinSlice";
+import Image from "next/image";
 
 const Favourites: React.FC = () => {
     const dispatch = useDispatch()
@@ -39,9 +40,9 @@ const Favourites: React.FC = () => {
 
     const totalPages = Math.ceil(favoriteCoinsWithDetails.length / itemsPerPage);
     const paginatedCoins = favoriteCoinsWithDetails.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
-      const handleOpenModal = (coin: CryptoData) => {
-            dispatch(setSelectedCoin(coin));
-        };
+    const handleOpenModal = (coin: CryptoData) => {
+        dispatch(setSelectedCoin(coin));
+    };
 
     return (
         <div className="flex flex-col mt-1 relative">
@@ -71,8 +72,21 @@ const Favourites: React.FC = () => {
                                                 onClick={() => removeFavoriteCoin(coin.name)}
                                             />
                                         </div>
-                                        <div onClick={()=> handleOpenModal(coin)} className="w-6 h-6 rounded-full cursor-pointer"><img src={coin.image} alt={coin.name} className="w-full h-full object-cover rounded-full" /></div>
-                                        <div onClick={()=> handleOpenModal(coin)} className="font-semibold cursor-pointer">{coin.name}</div>
+
+
+                                        <div onClick={() => handleOpenModal(coin)} className="w-6 h-6 rounded-full cursor-pointer">
+                                            <Image
+                                                src={coin.image}
+                                                alt={coin.name}
+                                                layout="intrinsic"
+                                                width={24}
+                                                height={24}
+                                                className="rounded-full"
+                                                objectFit="cover"
+                                            />
+                                        </div>
+
+                                        <div onClick={() => handleOpenModal(coin)} className="font-semibold cursor-pointer">{coin.name}</div>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className="font-bold text-xs">${coin.current_price.toLocaleString()}</span>

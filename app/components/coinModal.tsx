@@ -9,6 +9,7 @@ import ReactDOM from "react-dom";
 import { setSelectedCoin } from "../features/coinSlice";
 import Sparkline from "./sparkline";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
+import Image from "next/image";
 
 const CoinModal: React.FC = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,17 @@ const CoinModal: React.FC = () => {
             <div className="dark:bg-darkBackground bg-lightSecondary border border-gray-500 rounded-lg w-[95%] max-w-lg px-2 py-4 relative shadow-lg">
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                        <span className="w-8 h-8 rounded-full"><img src={selectedCoin.image} alt={selectedCoin.name} className="w-full h-full  object-cover rounded-full" /></span>
+                        <span className="w-8 h-8 rounded-full">
+                            <Image
+                                src={selectedCoin.image}
+                                alt={selectedCoin.name}
+                                layout="intrinsic"
+                                width={32}
+                                height={32}
+                                className="rounded-full"
+                                objectFit="cover"
+                            />
+                        </span>
                         <span className="text-lg font-semibold tracking-wide ">{selectedCoin.name}</span>
                     </div>
 

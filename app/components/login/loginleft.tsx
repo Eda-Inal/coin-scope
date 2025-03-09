@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const LoginLeft: React.FC = () => {
     return (
@@ -8,7 +9,13 @@ const LoginLeft: React.FC = () => {
             </h1>
 
             <div className="w-3/5">
-                <img src="/crypto.svg" alt="Crypto Illustration" className="w-full h-auto" />
+                <Image
+                    src="/crypto.svg"
+                    alt="Crypto Illustration"
+                    width={500}
+                    height={300}
+                    className="w-full h-auto"
+                />
             </div>
 
 
