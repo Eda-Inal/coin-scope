@@ -25,13 +25,13 @@ const Navbar: React.FC = () => {
         if (typeof window !== "undefined") {
             return (localStorage.getItem("theme") as "light" | "dark") || "dark";
         }
-        return "dark"; 
+        return "dark";
     });
     const [isClient, setIsClient] = useState(false);
 
-useEffect(() => {
-    setIsClient(true);
-}, []);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -51,39 +51,43 @@ useEffect(() => {
 
     return (
         <nav className="relative py-3 px-2 sm:px-8  ">
-           <ul className="flex justify-between items-center">
-    <li>
-        <Link href="/">
-            <div className="flex items-center gap-1 cursor-pointer">
-                <Image src={Logo} width={32} height={32} alt="Logo" />
-                CryptoTrack
-            </div>
-        </Link>
-    </li>
-    <div className="hidden sm:flex sm:gap-5 sm:items-center">
-        <li><ChangeTheme /></li>
-        <li><LanguageNavbar /></li>
-        {isClient && isAuthenticated ? (
-            <li><Profile /></li>
-        ) : (
-            <li>
-                <Link href="/login">
-                    <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
-                        {t.signIn}
-                    </button>
-                </Link>
-            </li>
-        )}
-    </div>
+            <ul className="flex justify-between items-center">
+                <li>
+                    <Link href="/">
+                        <div className="flex items-center gap-1 cursor-pointer">
+                            <Image src={Logo} width={32} height={32} alt="Logo" />
+                            CryptoTrack
+                        </div>
+                    </Link>
+                </li>
 
-    <div className="sm:hidden">
-        {isMenuOpen ? (
-            <CloseIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
-        ) : (
-            <HamburgerIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
-        )}
-    </div>
-</ul>
+                <li className="hidden sm:flex sm:gap-5 sm:items-center">
+                    <ul className="flex gap-5 items-center">
+                        <li><ChangeTheme /></li>
+                        <li><LanguageNavbar /></li>
+                        {isClient && isAuthenticated ? (
+                            <li><Profile /></li>
+                        ) : (
+                            <li>
+                                <Link href="/login">
+                                    <button className="bg-primary hover:bg-sky-600 text-white px-4 py-1 w-28 rounded-md font-semibold" onClick={handleHamburgerClick}>
+                                        {t.signIn}
+                                    </button>
+                                </Link>
+                            </li>
+                        )}
+                    </ul>
+                </li>
+
+                <li className="sm:hidden">
+                    {isMenuOpen ? (
+                        <CloseIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
+                    ) : (
+                        <HamburgerIcon className="text-primary cursor-pointer" onClick={handleHamburgerClick} />
+                    )}
+                </li>
+            </ul>
+
 
 
 
@@ -101,7 +105,7 @@ useEffect(() => {
                         {mode === "dark" ? <LightIcon className="fill-current cursor-pointer" /> : <DarkIcon className="fill-current cursor-pointer" />}
                     </li>
                     <li><LanguageNavbar /></li>
-                    {isClient && isAuthenticated  ? (
+                    {isClient && isAuthenticated ? (
                         <li><Profile /></li>
                     ) : (
                         <li>
