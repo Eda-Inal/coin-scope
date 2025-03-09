@@ -7,8 +7,11 @@ import { showNotification } from "./features/notifactionSlice";
 import Notification from "./components/notification";
 import Sidebar from "./components/main/sidebar";
 import Coins from "./components/main/coins";
-import CoinModal from "./components/coinModal";
 import Search from "./components/search";
+import dynamic from "next/dynamic";
+const CoinModal = dynamic(() => import('./components/coinModal'), {
+  ssr: false, 
+});
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);

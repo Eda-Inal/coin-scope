@@ -15,7 +15,7 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
     }));
 
     return (
-        <ResponsiveContainer width="80%" height={40}>
+        <ResponsiveContainer width="80%" height={60}>
             <AreaChart data={normalizedData}>
                 <YAxis type="number" domain={[0, 100]} hide />
 
@@ -25,6 +25,7 @@ const Sparkline: React.FC<SparklineProps> = ({ data }) => {
                     stroke="#0ea5e9"
                     fill="none"
                     strokeWidth={2}
+                    animationDuration={0}
                 />
             </AreaChart>
         </ResponsiveContainer>
